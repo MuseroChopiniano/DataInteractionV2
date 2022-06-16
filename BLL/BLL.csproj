@@ -48,14 +48,17 @@
     <Compile Include="Entities\Campaign.cs" />
     <Compile Include="Entities\Channel.cs" />
     <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\Interaction.cs" />
     <Compile Include="Entities\LogEntity.cs" />
     <Compile Include="Entities\SystemEntity.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="InteractionManager.cs" />
     <Compile Include="LogManager.cs" />
     <Compile Include="Mappers\CampaignMapper.cs" />
     <Compile Include="Mappers\ChannelMapper.cs" />
     <Compile Include="Mappers\CustomerMapper.cs" />
     <Compile Include="Mappers\IMapper.cs" />
+    <Compile Include="Mappers\InteractionMapper.cs" />
     <Compile Include="Mappers\LogMapper.cs" />
     <Compile Include="Mappers\UserMapper.cs" />
     <Compile Include="UserManager.cs" />

@@ -11,124 +11,133 @@ namespace UI
 {
 
 
-    public partial class SiteMaster
+    public partial class InteractionDetail
     {
 
         /// <summary>
-        /// head control.
+        /// InteractionTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl InteractionTitle;
 
         /// <summary>
-        /// MainForm control.
+        /// InteractionTypeLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm MainForm;
+        protected global::System.Web.UI.WebControls.Label InteractionTypeLbl;
 
         /// <summary>
-        /// HomeAnchor control.
+        /// InteractionTypeTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl HomeAnchor;
+        protected global::System.Web.UI.WebControls.TextBox InteractionTypeTxt;
 
         /// <summary>
-        /// UsersAnchor control.
+        /// InteractionChannel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UsersAnchor;
+        protected global::System.Web.UI.WebControls.Label InteractionChannel;
 
         /// <summary>
-        /// LogsAnchor control.
+        /// InteractionChannelTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LogsAnchor;
+        protected global::System.Web.UI.WebControls.TextBox InteractionChannelTxt;
 
         /// <summary>
-        /// CustomersAnchor control.
+        /// InteractionCustomer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CustomersAnchor;
+        protected global::System.Web.UI.WebControls.Label InteractionCustomer;
 
         /// <summary>
-        /// CampaignsAnchor control.
+        /// InteractionCustomerTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CampaignsAnchor;
+        protected global::System.Web.UI.WebControls.TextBox InteractionCustomerTxt;
 
         /// <summary>
-        /// ChannelsAnchor control.
+        /// InteractionCampaign control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ChannelsAnchor;
+        protected global::System.Web.UI.WebControls.Label InteractionCampaign;
 
         /// <summary>
-        /// InteractionsAnchor control.
+        /// InteractionCampaignTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl InteractionsAnchor;
+        protected global::System.Web.UI.WebControls.TextBox InteractionCampaignTxt;
 
         /// <summary>
-        /// LanguageList control.
+        /// InteractionDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList LanguageList;
+        protected global::System.Web.UI.WebControls.Label InteractionDate;
 
         /// <summary>
-        /// usernameSpan control.
+        /// InteractionDateTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl usernameSpan;
+        protected global::System.Web.UI.WebControls.TextBox InteractionDateTxt;
 
         /// <summary>
-        /// CloseSessionBtn control.
+        /// InteractionRevenue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton CloseSessionBtn;
+        protected global::System.Web.UI.WebControls.Label InteractionRevenue;
 
         /// <summary>
-        /// MainContentPlaceholder control.
+        /// InteractionRevenueTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContentPlaceholder;
+        protected global::System.Web.UI.WebControls.TextBox InteractionRevenueTxt;
+
+        /// <summary>
+        /// SaveBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SaveBtn;
     }
 }

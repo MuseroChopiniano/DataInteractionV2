@@ -47,12 +47,13 @@
                             <span runat="server" ID="LogsAnchor">Logs</span>
                         </a>
                     </li>
+                    <%-- 
                     <li class="nav-item">
                         <a class="nav-link active" href="/Languages.aspx">
                             <i class="fas fa-language"></i>
                             <span runat="server" ID="LanguagesAnchor">Languages</span>
                         </a>
-                    </li>
+                    </li>--%>
                     <li class="nav-item">
                         <a class="nav-link active" href="/Customers.aspx">
                             <i class="fas fa-id-card"></i>
@@ -67,8 +68,14 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="/Channels.aspx">
-                            <i class="fas fa-chart-network"></i>
+                            <i class="fas fa-rss"></i>
                             <span runat="server" ID="ChannelsAnchor">Channels</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/Interactions.aspx">
+                           <i class="fas fa-mouse-pointer"></i>
+                            <span runat="server" ID="InteractionsAnchor">Interactions</span>
                         </a>
                     </li>
                 </ul>

@@ -120,6 +120,8 @@
     <Content Include="favicon.ico" />
     <Content Include="ForgotPass.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="InteractionDetail.aspx" />
+    <Content Include="Interactions.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logs.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -335,6 +337,20 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="InteractionDetail.aspx.cs">
+      <DependentUpon>InteractionDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InteractionDetail.aspx.designer.cs">
+      <DependentUpon>InteractionDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Interactions.aspx.cs">
+      <DependentUpon>Interactions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interactions.aspx.designer.cs">
+      <DependentUpon>Interactions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

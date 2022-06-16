@@ -6,13 +6,12 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BLL;
 using BLL.Entities;
-using BLL.Mappers;
 
 namespace UI
 {
-    public partial class Channels : System.Web.UI.Page
+    public partial class Interactions : System.Web.UI.Page
     {
-        ChannelManager manager = new ChannelManager();
+        InteractionManager manager = new InteractionManager();
         protected void Page_Load(object sender, EventArgs e)
         {
             this.LoadGridView();
@@ -21,16 +20,16 @@ namespace UI
 
         private void LoadGridView()
         {
-            ChannelsGridView.DataSource = manager.GetChannels();
-            ChannelsGridView.DataBind();
+            InteractionsGridView.DataSource = manager.GetInteractions();
+            InteractionsGridView.DataBind();
         }
 
-        protected void ChannelsGridView_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void InteractionsGridView_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "DeleteRow" && e.CommandArgument != null)
             {
                 int index = int.Parse((string)e.CommandArgument);
-                manager.DeleteChannel(new Channel() { Id = (int)ChannelsGridView.DataKeys[index].Value })
+                manager.DeleteInteraction(new Interaction() { Id = (int)InteractionsGridView.DataKeys[index].Value })
                ;
                 this.LoadGridView();
             }

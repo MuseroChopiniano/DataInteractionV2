@@ -57,6 +57,7 @@ namespace BLL.Mappers
                 channel.Id = int.Parse(row["Id"].ToString());
                 channel.Name = row["Name"].ToString();
                 channel.Type = row["Type"].ToString();
+                channel.CreatedDate = DateTime.Parse(row["CreatedDate"].ToString());
                 channels.Add(channel);
             }
             return channels;
