@@ -15,7 +15,7 @@
                            <asp:GridView ID="ChannelsGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="ChannelsGridView_RowCommand">
                                <Columns>
                                 <asp:BoundField DataField="Id" Visible="False" />
-                                <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="ChannelDetail.aspx?Id={0}&action=edit" DataTextField="Name" Text="Name" HeaderText="Name" />
+                                <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="ChannelDetail.aspx?Id={0}&action=view" DataTextField="Name" Text="Name" HeaderText="Name" />
                                 <asp:BoundField DataField="Type" HeaderText="Type"/>
                                     <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" />
                                    <asp:ButtonField ButtonType="Button" CommandName="DeleteRow" ControlStyle-CssClass="btn btn-danger di-button-danger" Text="Delete" />
