@@ -1,11 +1,15 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BLL;
 using BLL.Entities;
+using CsvHelper;
+using UI.CsvHelpers;
 
 namespace UI
 {
@@ -33,6 +37,29 @@ namespace UI
                ;
                 this.LoadGridView();
             }
+        }
+
+        protected void UploadBtn_Click(object sender, EventArgs e)
+        {
+            String tempPathForFile = "c:\\temp\\";
+            if (UploadControl.HasFile)
+            {
+                String fileName = UploadControl.FileName;
+                tempPathForFile += fileName;
+                UploadControl.SaveAs(tempPathForFile);
+                ReadCsv(tempPathForFile);
+            }
+        }
+        private void ReadCsv(String path)
+        {
+            using (var reader = new StreamReader(path))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                csv.Context.RegisterClassMap<InteractionMap>();
+                var records = csv.GetRecords<Interaction>();
+                List<Interaction> interacts = records.ToList();
+            }
+         
         }
     }
 }
