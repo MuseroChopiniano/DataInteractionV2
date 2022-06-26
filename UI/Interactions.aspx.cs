@@ -42,7 +42,7 @@ namespace UI
         protected void UploadBtn_Click(object sender, EventArgs e)
         {
             String tempPathForFile = "c:\\temp\\";
-            if (UploadControl.HasFile)
+            if(UploadControl.HasFile)
             {
                 String fileName = UploadControl.FileName;
                 tempPathForFile += fileName;

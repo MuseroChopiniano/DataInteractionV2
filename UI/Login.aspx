@@ -53,7 +53,7 @@
                             
                                 <div class="form-group text-center">
  
-                                <a href="/ForgotPass.aspx"><span>Forgot Password?</span></a>
+                                <a href="/Auth/ForgotPass.aspx"><span>Forgot Password?</span></a>
                                 
                             </div>
                         </form>

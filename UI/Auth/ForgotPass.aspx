@@ -5,15 +5,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="Content/bootstrap.css" />
-    <link rel="stylesheet" href="Content/Brand.css" />
+    <link rel="stylesheet" href="../Content/bootstrap.css" />
+    <link rel="stylesheet" href="../Content/Brand.css" />
     <title>Data Interaction</title>
 </head>
 <body>
     <div class="container" >
         <div class="row">
             <div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-                <img src="Content/Images/DILogo.png" class="img-fluid"  alt="Company Logo">
+                <img src="../Content/Images/DILogo.png" class="img-fluid"  alt="Company Logo">
             </div>
         </div>
         <div class="row">
