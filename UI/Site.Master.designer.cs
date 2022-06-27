@@ -96,6 +96,15 @@ namespace UI
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl InteractionsAnchor;
 
         /// <summary>
+        /// SegmentsAnchor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SegmentsAnchor;
+
+        /// <summary>
         /// LanguageList control.
         /// </summary>
         /// <remarks>

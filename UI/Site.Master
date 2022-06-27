@@ -78,6 +78,12 @@
                             <span runat="server" ID="InteractionsAnchor">Interactions</span>
                         </a>
                     </li>
+                                        <li class="nav-item">
+                        <a class="nav-link active" href="/Segments.aspx">
+                           <i class="fas fa-braille"></i>
+                            <span runat="server" ID="SegmentsAnchor">Segments</span>
+                        </a>
+                    </li>
                 </ul>
                 
             </div>

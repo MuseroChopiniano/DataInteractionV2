@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BLL;
@@ -50,11 +51,16 @@ namespace UI
 
             protected void SaveBtn_Click(object sender, EventArgs e)
             {
-                Interaction interactionToSave = new Interaction();
+
+                    FormsIdentity id = (FormsIdentity)User.Identity;
+                     FormsAuthenticationTicket ticket = id.Ticket;
+                  Interaction interactionToSave = new Interaction();
                 if (action == "edit")
                 {
                     int interactionId = int.Parse(Request.Params.Get("id"));
                     interactionToSave.Id = interactionId;
+                    interactionToSave.LastModifiedDate = DateTime.Now;
+                    interactionToSave.LastModifiedById = int.Parse(ticket.UserData);
                 }
                 interactionToSave.Type = this.InteractionTypeTxt.Text;
                 interactionToSave.Date = DateTime.Parse(this.InteractionDateTxt.Text);

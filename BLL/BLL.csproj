@@ -61,7 +61,9 @@
     <Compile Include="Mappers\IMapper.cs" />
     <Compile Include="Mappers\InteractionMapper.cs" />
     <Compile Include="Mappers\LogMapper.cs" />
+    <Compile Include="Mappers\SegmentMapper.cs" />
     <Compile Include="Mappers\UserMapper.cs" />
+    <Compile Include="SegmentManager.cs" />
     <Compile Include="UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
