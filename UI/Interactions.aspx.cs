@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BLL;
@@ -41,8 +42,10 @@ namespace UI
 
         protected void UploadBtn_Click(object sender, EventArgs e)
         {
-            String tempPathForFile = "c:\\temp\\";
-            if(UploadControl.HasFile)
+           
+
+            String tempPathForFile = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
+            if (UploadControl.HasFile)
             {
                 String fileName = UploadControl.FileName;
                 tempPathForFile += fileName;
@@ -52,12 +55,21 @@ namespace UI
         }
         private void ReadCsv(String path)
         {
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+          
             using (var reader = new StreamReader(path))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
                 csv.Context.RegisterClassMap<InteractionMap>();
                 var records = csv.GetRecords<Interaction>();
-                List<Interaction> interacts = records.ToList();
+                List<Interaction> interactions = records.ToList();
+                interactions.ForEach(i => {
+                    i.CreatedById = int.Parse(ticket.UserData);
+                    i.LastModifiedById = int.Parse(ticket.UserData);
+                });
+
+                this.manager.UpsertInteraction(interactions);
             }
          
         }

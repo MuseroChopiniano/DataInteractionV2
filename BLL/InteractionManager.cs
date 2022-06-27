@@ -28,5 +28,10 @@ namespace BLL
             InteractionMapper mapper = new InteractionMapper();
             mapper.Delete(interaction);
         }
+        public void UpsertInteraction(List<Interaction> interactions)
+        {
+            InteractionMapper mapper = new InteractionMapper();
+            mapper.BulkSave(interactions);
+        }
     }
 }

@@ -113,7 +113,22 @@ namespace DAL
 
             return rows;
         }
-        public int Save(string procedure, List<SqlParameter> parameters, Boolean scalar)
+
+        public void BulkSave(string table, List<SqlBulkCopyColumnMapping> mappings,DataTable records)
+        {
+            using (var copy = new SqlBulkCopy(ConfigurationManager.ConnectionStrings["DataInteractionDB"].ConnectionString))
+            {
+                copy.DestinationTableName = table;
+                foreach (SqlBulkCopyColumnMapping mapping in mappings)
+                {
+                    copy.ColumnMappings.Add(mapping);
+                }
+                copy.WriteToServer(records);
+
+            }
+        }
+           
+public int Save(string procedure, List<SqlParameter> parameters, Boolean scalar)
         {
             if (!scalar)
             {

@@ -70,6 +70,54 @@ namespace BLL.Mappers
             return interactions;
         }
 
+        public void BulkSave(List<Interaction> interactions)
+        {
+            List<SqlBulkCopyColumnMapping> mappings = new List<SqlBulkCopyColumnMapping>();
+            mappings.Add(new SqlBulkCopyColumnMapping(nameof(Interaction.Id), "Id"));
+            mappings.Add(new SqlBulkCopyColumnMapping("CampaignId", "CampaignId"));
+            mappings.Add(new SqlBulkCopyColumnMapping("ChannelId", "ChannelId"));
+            mappings.Add(new SqlBulkCopyColumnMapping("CustomerId", "CustomerId"));
+            mappings.Add(new SqlBulkCopyColumnMapping(nameof(Interaction.Date), "Date"));
+            mappings.Add(new SqlBulkCopyColumnMapping(nameof(Interaction.Type), "Type"));
+            mappings.Add(new SqlBulkCopyColumnMapping(nameof(Interaction.Revenue), "Revenue"));
+            mappings.Add(new SqlBulkCopyColumnMapping(nameof(Interaction.CreatedById), "CreatedById"));
+            mappings.Add(new SqlBulkCopyColumnMapping(nameof(Interaction.LastModifiedById), "LastModifiedById"));
+
+            this.access.BulkSave("dbo.Interaction", mappings, ToDatatable(interactions));
+        }
+
+        private DataTable ToDatatable(List<Interaction> interactions)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Id");
+            table.Columns.Add("Date");
+            table.Columns.Add("Type");
+            table.Columns.Add("Revenue");
+            table.Columns.Add("CampaignId");
+            table.Columns.Add("ChannelId");
+            table.Columns.Add("CustomerId");
+            table.Columns.Add("CreatedById");
+            table.Columns.Add("LastModifiedById");
+
+            foreach (Interaction item in interactions)
+            {
+               DataRow newRow =  table.NewRow();
+                if(item.Id != 0)
+                {
+                    newRow["Id"] = item.Id;
+                }
+                newRow["Date"] = item.Date;
+                newRow["Type"] = item.Type;
+                newRow["Revenue"] = item.Revenue;
+                newRow["CampaignId"] = item.Campaign.Id;
+                newRow["ChannelId"] = item.Channel.Id;
+                newRow["CustomerId"] = item.Customer.Id;
+                newRow["CreatedById"] = item.CreatedById;
+                newRow["LastModifiedById"] = item.LastModifiedById;
+                table.Rows.Add(newRow);
+            }
+            return table; 
+        }
         public Interaction Read(Interaction entity)
         {
             throw new NotImplementedException();

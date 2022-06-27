@@ -50,6 +50,7 @@
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Interaction.cs" />
     <Compile Include="Entities\LogEntity.cs" />
+    <Compile Include="Entities\Segment.cs" />
     <Compile Include="Entities\SystemEntity.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="InteractionManager.cs" />

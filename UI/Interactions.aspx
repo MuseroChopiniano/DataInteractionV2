@@ -8,7 +8,7 @@
             <div class="col-md-12 mb-4">
                 <div class="card-header d-flex justify-content-end">
                     <button id="HtmlNewBtn" type="button" Class="btn btn-primary di-button-primary m-1" onclick="window.location.href='/InteractionDetail.aspx?action=new'"><i class="fas fa-plus"> </i>&nbsp;<span runat="server" ID="NewBtn">New</span></button>
-                    <asp:FileUpload ID="UploadControl" CssClass="form-control-file" runat="server"  />
+                    <asp:FileUpload ID="UploadControl" runat="server"  />
                     <asp:button id="UploadBtn" CssClass="btn btn-primary di-button-primary m-1" runat="server" OnClick="UploadBtn_Click" text="Upload"/>
                 </div>
                 <div class="card shadow border-left-primary  pb-2">
@@ -19,7 +19,8 @@
                                 
                                 <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="InteractionDetail.aspx?Id={0}&action=edit" DataTextField="Id" Text="Id" HeaderText="Id" />
                                 <asp:BoundField DataField="Type" HeaderText="Type"/>
-                               <%--     <asp:BoundField DataField="Channel.Name" HeaderText="Channel" />
+                               <%-- 
+                                <asp:BoundField DataField="Channel.Name" HeaderText="Channel" />
                                 <asp:BoundField DataField="Customer.Name" HeaderText="Customer" /> 
                                 <asp:BoundField DataField="Campaign.Name" HeaderText="Campaign" /> --%>
                                     <asp:BoundField DataField="Date" HeaderText="Date" />
