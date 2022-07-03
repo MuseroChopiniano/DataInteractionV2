@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using BLL;
 using BLL.Entities;
 using CsvHelper;
+using CsvHelper.Configuration;
 using UI.CsvHelpers;
 
 namespace UI
@@ -59,7 +60,10 @@ namespace UI
             FormsAuthenticationTicket ticket = id.Ticket;
           
             using (var reader = new StreamReader(path))
-            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            using (
+                var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture) { Delimiter = ';'}
+                var csv = new CsvReader(reader, csvConfig)
+                )
             {
                 csv.Context.RegisterClassMap<InteractionMap>();
                 var records = csv.GetRecords<Interaction>();
@@ -72,6 +76,14 @@ namespace UI
                 this.manager.UpsertInteraction(interactions);
             }
          
+        }
+
+        protected void DonwloadTempBtn_Click(object sender, EventArgs e)
+        {
+            Response.ContentType = "text/csv";
+            Response.AppendHeader("Content-Disposition", "attachment; filename=InteractionsTemplate.csv");
+            Response.TransmitFile(Server.MapPath("~/App_Data/InteractionsTemplate.csv"));
+            Response.End();
         }
     }
 }

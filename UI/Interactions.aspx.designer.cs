@@ -33,6 +33,33 @@ namespace UI
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl NewBtn;
 
         /// <summary>
+        /// Span1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Span1;
+
+        /// <summary>
+        /// InteractionsGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView InteractionsGridView;
+
+        /// <summary>
+        /// DonwloadTempBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DonwloadTempBtn;
+
+        /// <summary>
         /// UploadControl control.
         /// </summary>
         /// <remarks>
@@ -51,12 +78,21 @@ namespace UI
         protected global::System.Web.UI.WebControls.Button UploadBtn;
 
         /// <summary>
-        /// InteractionsGridView control.
+        /// SaveUserBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView InteractionsGridView;
+        protected global::System.Web.UI.WebControls.Button SaveUserBtn;
+
+        /// <summary>
+        /// ConfirmDeleteBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ConfirmDeleteBtn;
     }
 }
