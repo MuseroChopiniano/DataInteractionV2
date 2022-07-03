@@ -12,7 +12,7 @@
                 <div class="card shadow border-left-primary  pb-2">
                     <div class="card-body">
                         <div class="table table-bordered table-responsive">
-                           <asp:GridView ID="ChannelsGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="ChannelsGridView_RowCommand">
+                           <asp:GridView AllowPaging="true" OnPageIndexChanging="ChannelsGridView_PageIndexChanging"  ID="ChannelsGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="ChannelsGridView_RowCommand">
                                <Columns>
                                 <asp:BoundField DataField="Id" Visible="False" />
                                 <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="ChannelDetail.aspx?Id={0}&action=view" DataTextField="Name" Text="Name" HeaderText="Name" />
@@ -20,6 +20,8 @@
                                     <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" />
                                    <asp:ButtonField ButtonType="Button" CommandName="DeleteRow" ControlStyle-CssClass="btn btn-danger di-button-danger" Text="Delete" />
                             </Columns>
+                                <PagerSettings PageButtonCount="5" />
+                               <PagerStyle HorizontalAlign = "Center" CssClass = "di-GridPager" />
                            </asp:GridView>
                         </div>                        
                     </div>

@@ -105,5 +105,11 @@ namespace UI
                 this.LoadData();
             }
         }
+
+        protected void UserGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.UserGridView.PageIndex = e.NewPageIndex;
+            this.LoadData();
+        }
     }
 }

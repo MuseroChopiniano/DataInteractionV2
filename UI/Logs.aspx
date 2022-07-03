@@ -11,7 +11,7 @@
                 <div class="card shadow border-left-primary  pb-2">
                     <div class="card-body">
                         <div class="table table-bordered table-responsive">
-                           <asp:GridView ID="LogsGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" >
+                           <asp:GridView AllowPaging="true" OnPageIndexChanging="LogsGridView_PageIndexChanging" ID="LogsGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" >
                                <Columns>
                                 <asp:BoundField DataField="Id" Visible="true" HeaderText="Id"/>
                                  <asp:BoundField DataField="EventType" HeaderText="Event Type"/>
@@ -20,6 +20,8 @@
                                    <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" />
 
                                     </Columns>
+                                <PagerSettings PageButtonCount="5" />
+                               <PagerStyle HorizontalAlign = "Center" CssClass = "di-GridPager" />
                            </asp:GridView>
                         </div>                        
                     </div>

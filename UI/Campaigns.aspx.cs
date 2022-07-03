@@ -34,5 +34,11 @@ namespace UI
                 this.LoadGridView();
             }
         }
+
+        protected void CampaignsGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.CampaignsGridView.PageIndex = e.NewPageIndex;
+            this.LoadGridView();
+        }
     }
 }

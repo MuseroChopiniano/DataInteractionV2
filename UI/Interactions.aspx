@@ -14,7 +14,7 @@
                 <div class="card shadow border-left-primary  pb-2">
                     <div class="card-body">
                         <div class="table table-bordered table-responsive">
-                           <asp:GridView ID="InteractionsGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="InteractionsGridView_RowCommand">
+                           <asp:GridView ID="InteractionsGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="InteractionsGridView_RowCommand" AllowPaging="True" OnPageIndexChanging="InteractionsGridView_PageIndexChanging">
                                <Columns>
                                 
                                 <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="InteractionDetail.aspx?Id={0}&action=edit" DataTextField="Id" Text="Id" HeaderText="Id" />
@@ -27,8 +27,12 @@
                                     <asp:BoundField DataField="Revenue" HeaderText="Revenue" />
                                     <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" />
 
-                                   <asp:ButtonField ButtonType="Button" CommandName="DeleteRow" ControlStyle-CssClass="btn btn-danger di-button-danger" Text="Delete" />
+                                   <asp:ButtonField ButtonType="Button" CommandName="DeleteRow" ControlStyle-CssClass="btn btn-danger di-button-danger" Text="Delete" >
+<ControlStyle CssClass="btn btn-danger di-button-danger"></ControlStyle>
+                                   </asp:ButtonField>
                             </Columns>
+                               <PagerSettings PageButtonCount="5" />
+                               <PagerStyle HorizontalAlign = "Center" CssClass = "di-GridPager" />
                            </asp:GridView>
                         </div>                        
                     </div>

@@ -35,5 +35,11 @@ namespace UI
                 this.LoadGridView();
             }
         }
+
+        protected void ChannelsGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.ChannelsGridView.PageIndex = e.NewPageIndex;
+            this.LoadGridView();
+        }
     }
 }

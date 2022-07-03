@@ -15,7 +15,7 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             
-                            <asp:GridView ID="UserGridView" AutoGenerateColumns="false" runat="server" CssClass="table table-hover table-striped" OnRowDataBound="UserGridView_RowDataBound" OnRowCreated="UserGridView_RowCreated" OnSelectedIndexChanged="UserGridView_SelectedIndexChanged">
+                            <asp:GridView ID="UserGridView" AutoGenerateColumns="false" runat="server" CssClass="table table-hover table-striped" OnRowDataBound="UserGridView_RowDataBound" OnRowCreated="UserGridView_RowCreated" OnSelectedIndexChanged="UserGridView_SelectedIndexChanged" AllowPaging="True" OnPageIndexChanging="UserGridView_PageIndexChanging">
                                 <columns>
                                     <asp:BoundField HeaderText="Id" DataField="Id" />
                                      <asp:BoundField HeaderText="Username" DataField="Username" />
@@ -25,6 +25,8 @@
                                     <asp:BoundField HeaderText="Last Modified Date" DataField="LastModifiedDate" />
                               
                                 </columns>
+                                 <PagerSettings PageButtonCount="5" />
+                               <PagerStyle HorizontalAlign = "Center" CssClass = "di-GridPager" />
                             </asp:GridView>
 
                         </div>

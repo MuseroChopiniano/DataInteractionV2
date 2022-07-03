@@ -34,5 +34,11 @@ namespace UI
                 this.LoadGridView();
             }
         }
+
+        protected void SegmentsGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.SegmentsGridView.PageIndex = e.NewPageIndex;
+            this.LoadGridView();
+        }
     }
 }

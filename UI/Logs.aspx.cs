@@ -23,5 +23,11 @@ namespace UI
             LogsGridView.DataSource = logManager.GetLogs();
             LogsGridView.DataBind();
         }
+
+        protected void LogsGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.LogsGridView.PageIndex = e.NewPageIndex;
+            this.LoadGridView();
+        }
     }
 }

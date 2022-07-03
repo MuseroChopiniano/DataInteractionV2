@@ -12,7 +12,7 @@
                 <div class="card shadow border-left-primary  pb-2">
                     <div class="card-body">
                         <div class="table table-bordered table-responsive">
-                           <asp:GridView ID="CustomersGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="CustomersGridView_RowCommand">
+                           <asp:GridView AllowPaging="true" OnPageIndexChanging="CustomersGridView_PageIndexChanging" ID="CustomersGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="CustomersGridView_RowCommand">
                                <Columns>
                                 <asp:BoundField DataField="Id" Visible="False" />
                                 <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="CustomerDetail.aspx?Id={0}&action=edit" DataTextField="Name" Text="Name" HeaderText="Name" />
@@ -21,6 +21,8 @@
                                 <asp:BoundField DataField="Gender" HeaderText="Gender" />
                                    <asp:ButtonField ButtonType="Button" CommandName="DeleteRow" ControlStyle-CssClass="btn btn-danger di-button-danger" Text="Delete" />
                             </Columns>
+                                <PagerSettings PageButtonCount="5" />
+                               <PagerStyle HorizontalAlign = "Center" CssClass = "di-GridPager" />
                            </asp:GridView>
                         </div>                        
                     </div>

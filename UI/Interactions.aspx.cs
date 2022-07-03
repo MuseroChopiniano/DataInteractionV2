@@ -58,23 +58,22 @@ namespace UI
         {
             FormsIdentity id = (FormsIdentity)User.Identity;
             FormsAuthenticationTicket ticket = id.Ticket;
-          
-            using (var reader = new StreamReader(path))
-            using (
-                var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture) { Delimiter = ';'}
-                var csv = new CsvReader(reader, csvConfig)
-                )
-            {
-                csv.Context.RegisterClassMap<InteractionMap>();
-                var records = csv.GetRecords<Interaction>();
-                List<Interaction> interactions = records.ToList();
-                interactions.ForEach(i => {
-                    i.CreatedById = int.Parse(ticket.UserData);
-                    i.LastModifiedById = int.Parse(ticket.UserData);
-                });
 
-                this.manager.UpsertInteraction(interactions);
-            }
+            using (var reader = new StreamReader(path))
+            {
+                var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture) { Delimiter = ";" };
+                using ( var csv = new CsvReader(reader, csvConfig))
+                {
+                    csv.Context.RegisterClassMap<InteractionMap>();
+                    var records = csv.GetRecords<Interaction>();
+                    List<Interaction> interactions = records.ToList();
+                    interactions.ForEach(i => {
+                        i.CreatedById = int.Parse(ticket.UserData);
+                        i.LastModifiedById = int.Parse(ticket.UserData);
+                    });
+
+                    this.manager.UpsertInteraction(interactions);
+                } }
          
         }
 
@@ -84,6 +83,12 @@ namespace UI
             Response.AppendHeader("Content-Disposition", "attachment; filename=InteractionsTemplate.csv");
             Response.TransmitFile(Server.MapPath("~/App_Data/InteractionsTemplate.csv"));
             Response.End();
+        }
+
+        protected void InteractionsGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            InteractionsGridView.PageIndex = e.NewPageIndex;
+            this.LoadGridView();
         }
     }
 }

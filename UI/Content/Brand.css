@@ -83,7 +83,8 @@
     .di-button-primary:active:focus {
         background-color: #301890;
     }
-    .di-card-header {
+
+.di-card-header {
     background-color: #D8D8F0 !important;
     color: white;
 }
@@ -93,7 +94,7 @@
     background-color: #301890
 }
 
-.bg-primary-light, .selectedRowStyle{
+.bg-primary-light, .selectedRowStyle {
     background-color: #624EB2 !important;
 }
 
@@ -255,4 +256,3 @@
 .border-left-primary {
     border-left: .25rem solid #D18B0B !important;
 }
-
