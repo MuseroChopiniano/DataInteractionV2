@@ -131,6 +131,7 @@
     <Content Include="Campaigns.aspx" />
     <Content Include="ChannelDetail.aspx" />
     <Content Include="Channels.aspx" />
+    <Content Include="Charts\HomeCharts.js" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -149,12 +150,15 @@
     <Content Include="Global.asax" />
     <Content Include="InteractionDetail.aspx" />
     <Content Include="Interactions.aspx" />
+    <Content Include="Journeys.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logs.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\chart.js" />
+    <Content Include="Scripts\chart.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -389,6 +393,13 @@
     </Compile>
     <Compile Include="Interactions.aspx.designer.cs">
       <DependentUpon>Interactions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Journeys.aspx.cs">
+      <DependentUpon>Journeys.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Journeys.aspx.designer.cs">
+      <DependentUpon>Journeys.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

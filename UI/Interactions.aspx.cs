@@ -61,7 +61,7 @@ namespace UI
 
             using (var reader = new StreamReader(path))
             {
-                var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture) { Delimiter = ";" };
+                var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture);
                 using ( var csv = new CsvReader(reader, csvConfig))
                 {
                     csv.Context.RegisterClassMap<InteractionMap>();

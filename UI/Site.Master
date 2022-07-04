@@ -84,6 +84,13 @@
                             <span runat="server" ID="SegmentsAnchor">Segments</span>
                         </a>
                     </li>
+                  
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/Journeys.aspx">
+                           <i class="fa-solid fa-bezier-curve"></i>
+                            <span runat="server" ID="Span1">Journeys</span>
+                        </a>
+                    </li>
                 </ul>
                 
             </div>

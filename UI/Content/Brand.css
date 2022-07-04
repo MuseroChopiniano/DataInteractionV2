@@ -256,3 +256,16 @@
 .border-left-primary {
     border-left: .25rem solid #D18B0B !important;
 }
+
+.kpi-header {
+    font-weight: bold;
+    color: #624eb2bf;
+    text-transform: uppercase;
+    font-family: "Open Sans";
+}
+.kpi-value {
+    font-size: 26px;
+    font-weight: bold;
+    color: #341c93;
+    font-family: "Open Sans";
+}
