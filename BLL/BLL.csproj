@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CampaignManager.cs" />
     <Compile Include="ChannelManager.cs" />
+    <Compile Include="ClusterHelper.cs" />
     <Compile Include="CustomerManager.cs" />
     <Compile Include="Encryptor.cs" />
     <Compile Include="Entities\Campaign.cs" />

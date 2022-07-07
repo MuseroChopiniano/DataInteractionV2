@@ -32,7 +32,8 @@ namespace BLL.Mappers
 
         public Customer Read(Customer entity)
         {
-            throw new NotImplementedException();
+            List<Customer> customers = this.ReadAll();
+            return customers.Find(x => x.Id == entity.Id);
         }
 
         public List<Customer> ReadAll()

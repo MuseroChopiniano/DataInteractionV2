@@ -15,7 +15,13 @@ namespace BLL.Entities
         public Channel Channel { get { return this.channel; } set { this.channel = value; } }
 
         private Customer customer = new Customer();
-        public Customer Customer { get { return this.customer; } set { this.customer = value; } }
+        public Customer Customer { get {
+                if (this.customer.Age == 0 && this.customer.Id != 0){
+                    CustomerManager manager = new CustomerManager();
+                    this.customer = manager.GetCustomers(this.customer);
+                }
+              return this.customer; 
+        } set { this.customer = value; } }
 
         private Campaign campaign = new Campaign();
         public Campaign Campaign { get { return this.campaign; } set { this.campaign = value; } }

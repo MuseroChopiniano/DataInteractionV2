@@ -25,6 +25,13 @@ namespace BLL
             int result = customerMapper.Upsert(customer);
         }
 
+        public Customer GetCustomers(Customer customer)
+        {
+            CustomerMapper customerMapper = new CustomerMapper();
+            return customerMapper.Read(customer);
+         
+        }
+
         public void DeleteCustomer(Customer customer)
         {
             CustomerMapper customerMapper = new CustomerMapper();
