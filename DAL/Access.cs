@@ -19,7 +19,7 @@ namespace DAL
             {
 
                 this.connection = new SqlConnection();
-                //this.connection.ConnectionString = "Data Source=BIGNOTE\\SQLEXPRESS01;Initial Catalog=DataInteraction;Integrated Security=True";
+                
                 this.connection.ConnectionString = ConfigurationManager.ConnectionStrings["DataInteractionDB"].ConnectionString;
                 this.connection.Open();
             }
@@ -139,8 +139,12 @@ public int Save(string procedure, List<SqlParameter> parameters, Boolean scalar)
             SqlCommand comando = BuildCommand(procedure, parameters);
             try
             {
-                result = int.Parse(comando.ExecuteScalar().ToString());
+                object resultObject = comando.ExecuteScalar();
+                resultObject = (resultObject == DBNull.Value) ? null : resultObject;
+                result = Convert.ToInt32(resultObject);
+                
             }
+
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.Message);

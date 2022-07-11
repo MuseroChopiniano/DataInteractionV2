@@ -51,6 +51,7 @@
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Interaction.cs" />
     <Compile Include="Entities\LogEntity.cs" />
+    <Compile Include="Entities\Permission.cs" />
     <Compile Include="Entities\Segment.cs" />
     <Compile Include="Entities\SystemEntity.cs" />
     <Compile Include="Entities\User.cs" />
@@ -62,8 +63,10 @@
     <Compile Include="Mappers\IMapper.cs" />
     <Compile Include="Mappers\InteractionMapper.cs" />
     <Compile Include="Mappers\LogMapper.cs" />
+    <Compile Include="Mappers\PermissionMapper.cs" />
     <Compile Include="Mappers\SegmentMapper.cs" />
     <Compile Include="Mappers\UserMapper.cs" />
+    <Compile Include="PermissionManager.cs" />
     <Compile Include="SegmentManager.cs" />
     <Compile Include="UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

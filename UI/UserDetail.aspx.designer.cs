@@ -11,151 +11,133 @@ namespace UI
 {
 
 
-    public partial class SiteMaster
+    public partial class UserDetail
     {
 
         /// <summary>
-        /// head control.
+        /// UserTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserTitle;
 
         /// <summary>
-        /// MainForm control.
+        /// UserNameLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm MainForm;
+        protected global::System.Web.UI.WebControls.Label UserNameLbl;
 
         /// <summary>
-        /// HomeAnchor control.
+        /// UserNameTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl HomeAnchor;
+        protected global::System.Web.UI.WebControls.TextBox UserNameTxt;
 
         /// <summary>
-        /// UsersAnchor control.
+        /// UserFirstNameLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UsersAnchor;
+        protected global::System.Web.UI.WebControls.Label UserFirstNameLbl;
 
         /// <summary>
-        /// PermissionsAnchor control.
+        /// UserFirstNameTx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PermissionsAnchor;
+        protected global::System.Web.UI.WebControls.TextBox UserFirstNameTx;
 
         /// <summary>
-        /// LogsAnchor control.
+        /// UserLastNameLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LogsAnchor;
+        protected global::System.Web.UI.WebControls.Label UserLastNameLbl;
 
         /// <summary>
-        /// CustomersAnchor control.
+        /// UserLastNameTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CustomersAnchor;
+        protected global::System.Web.UI.WebControls.TextBox UserLastNameTxt;
 
         /// <summary>
-        /// CampaignsAnchor control.
+        /// UserEmailLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CampaignsAnchor;
+        protected global::System.Web.UI.WebControls.Label UserEmailLbl;
 
         /// <summary>
-        /// ChannelsAnchor control.
+        /// UserEmailTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ChannelsAnchor;
+        protected global::System.Web.UI.WebControls.TextBox UserEmailTxt;
 
         /// <summary>
-        /// InteractionsAnchor control.
+        /// UserStatusLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl InteractionsAnchor;
+        protected global::System.Web.UI.WebControls.Label UserStatusLbl;
 
         /// <summary>
-        /// SegmentsAnchor control.
+        /// UserStatusDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SegmentsAnchor;
+        protected global::System.Web.UI.WebControls.DropDownList UserStatusDropDown;
 
         /// <summary>
-        /// Span1 control.
+        /// UsersPlaceholder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Span1;
+        protected global::System.Web.UI.WebControls.PlaceHolder UsersPlaceholder;
 
         /// <summary>
-        /// LanguageList control.
+        /// SaveBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList LanguageList;
+        protected global::System.Web.UI.WebControls.Button SaveBtn;
 
         /// <summary>
-        /// usernameSpan control.
+        /// CancelBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl usernameSpan;
-
-        /// <summary>
-        /// CloseSessionBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton CloseSessionBtn;
-
-        /// <summary>
-        /// MainContentPlaceholder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContentPlaceholder;
+        protected global::System.Web.UI.WebControls.Button CancelBtn;
     }
 }

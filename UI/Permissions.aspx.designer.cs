@@ -11,17 +11,17 @@ namespace UI
 {
 
 
-    public partial class Users
+    public partial class Permissions
     {
 
         /// <summary>
-        /// UsersTitle control.
+        /// PermissionsTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UsersTitle;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PermissionsTitle;
 
         /// <summary>
         /// NewBtn control.
@@ -42,13 +42,13 @@ namespace UI
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tableDiv;
 
         /// <summary>
-        /// UsersGridView control.
+        /// PermissionsGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView UsersGridView;
+        protected global::System.Web.UI.WebControls.GridView PermissionsGridView;
 
         /// <summary>
         /// noRowsDiv control.

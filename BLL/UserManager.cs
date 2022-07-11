@@ -31,6 +31,12 @@ namespace BLL
             return userMapper.ReadAll();
         }
 
+        public List<Permission> GetUserPermissions(User user)
+        {
+            PermissionMapper mapper = new PermissionMapper();
+            return mapper.ReadChildren(user);
+        }
+
         public void RestartBlockCounter(User aUser)
         {
             aUser.BlockCounter = 0;
