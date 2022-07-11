@@ -13,22 +13,34 @@ namespace UI
     public partial class Users : System.Web.UI.Page
     {
         UserManager manager = new UserManager();
-       
+        User contextUser = new User();
         
         protected void Page_Load(object sender, EventArgs e)
         {
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+            this.contextUser.Id = int.Parse(ticket.UserData);
             if (!IsPostBack)
             {
                 this.LoadData();
+            }
+            if (!manager.HasPermission(this.contextUser, "User-Create"))
+            {
+                this.newBtnContainer.Visible = false;
+               
             }
         }
 
         private void LoadData()
         {
-            UsersGridView.DataSource = manager.GetAll();
-            UsersGridView.DataBind();
-            noRowsDiv.Visible = UsersGridView.Rows.Count == 0;
-            tableDiv.Visible = UsersGridView.Rows.Count > 0;
+            if(manager.HasPermission(this.contextUser, "User-Read"))
+            {
+                UsersGridView.DataSource = manager.GetAll();
+                UsersGridView.DataBind();
+                noRowsDiv.Visible = UsersGridView.Rows.Count == 0;
+                tableDiv.Visible = UsersGridView.Rows.Count > 0;
+            }
+           
         }
 
         protected void UsersGridView_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -50,9 +62,17 @@ namespace UI
             this.LoadData();
         }
        
+        protected bool HasDeletePermission()
+        {
+            return this.manager.HasPermission(this.contextUser, "User-Delete");
+        }
 
-        
-
-      
+        protected void UsersGridView_DataBound(object sender, EventArgs e)
+        {
+            if (!this.HasDeletePermission())
+            {
+                UsersGridView.Columns[UsersGridView.Columns.Count - 1].Visible=false;
+            }
+        }
     }
 }

@@ -15,12 +15,19 @@ namespace UI
     {
         string action;
         UserManager manager = new UserManager();
-
+        User contextUser = new User();
 
         User currentUs = new User();
         protected void Page_Load(object sender, EventArgs e)
         {
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+            this.contextUser.Id = int.Parse(ticket.UserData);
             this.action = Request.Params.Get("action");
+            if(this.action == null)
+            {
+                Response.Redirect("/UserDetail.aspx?action=new");
+            }
             if (!IsPostBack)
             {
                 this.LoadData();
@@ -34,6 +41,10 @@ namespace UI
         {
             if (action == "edit")
             {
+                if (!this.manager.HasPermission(this.contextUser, "User-Edit"))
+                {
+                    Response.Redirect("/Auth/Unauthorized.aspx");
+                }
                 int userId = int.Parse(Request.Params.Get("id"));
                 List<User> users = manager.GetAll();
                 User selectedUser = (from User c in users
@@ -48,6 +59,10 @@ namespace UI
             }
             else if (action == "new")
             {
+                if (!this.manager.HasPermission(this.contextUser, "User-Create"))
+                {
+                    Response.Redirect("/Auth/Unauthorized.aspx");
+                }
                 this.LoadPermissions(this.currentUs);
             }
         }

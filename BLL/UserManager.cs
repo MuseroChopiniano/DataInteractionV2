@@ -37,6 +37,30 @@ namespace BLL
             return mapper.ReadChildren(user);
         }
 
+        public bool HasPermission(User user, String permission)
+        {
+            bool result = false;
+            result = this.HasPermission(user.Permissions, permission);
+            return result;
+        }
+        private bool HasPermission(List<Permission> permissions, string permission)
+        {
+            bool result = false;
+            foreach(Permission perm in permissions)
+            {
+                if(perm.Type == PermissionType.Regular && permission == perm.Name)
+                {
+                    return true;
+                }
+                if(perm.Type == PermissionType.Group)
+                {
+                    result = this.HasPermission(perm.ChildPermissions, permission);
+                }
+            }
+            return result;
+
+        }
+
         public void RestartBlockCounter(User aUser)
         {
             aUser.BlockCounter = 0;

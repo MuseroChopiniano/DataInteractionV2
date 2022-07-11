@@ -291,6 +291,7 @@
     <Content Include="SegmentDetail.aspx" />
     <Content Include="Segments.aspx" />
     <Content Include="Site.Master" />
+    <Content Include="Auth\Unauthorized.aspx" />
     <Content Include="UserDetail.aspx" />
     <Content Include="Users.aspx" />
     <Content Include="ViewSwitcher.ascx" />
@@ -462,6 +463,13 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Auth\Unauthorized.aspx.cs">
+      <DependentUpon>Unauthorized.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Auth\Unauthorized.aspx.designer.cs">
+      <DependentUpon>Unauthorized.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserDetail.aspx.cs">
       <DependentUpon>UserDetail.aspx</DependentUpon>

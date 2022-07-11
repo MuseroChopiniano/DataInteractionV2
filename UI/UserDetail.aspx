@@ -32,7 +32,7 @@
                             <asp:Label runat="server" ID="UserStatusLbl" class="col-form-label" Text="Status"></asp:Label>    
                             <asp:DropDownList runat="server" Id="UserStatusDropDown" CssClass="form-control">
                                 <asp:ListItem Selected="True" Value="Active">Active</asp:ListItem>
-                                <asp:ListItem Selected="True" Value="Active">Blocked</asp:ListItem>
+                                <asp:ListItem Selected="False" Value="Blocked">Blocked</asp:ListItem>
                             </asp:DropDownList>
                                 
                         </div>
