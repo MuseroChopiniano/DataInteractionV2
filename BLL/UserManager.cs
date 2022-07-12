@@ -68,9 +68,22 @@ namespace BLL
 
         public int UpsertUser(User user)
         {
+            bool update = user.Id != 0;
             int result = 0;
             UserMapper userMapper = new UserMapper();
             result = userMapper.Upsert(user);
+            if(result == 0)
+            {
+                LogManager logManager = new LogManager();
+                logManager.SaveLog(new LogEntity()
+                {
+                    EventType = update ? EventType.ObjectUpdate : EventType.ObjectInsert,
+                    Entity = "User",
+                    Message = "The User with Id " + user.Id + " has been upserted by User with Id " + user.LastModifiedById,
+                    LastModifiedById = user.LastModifiedById,
+                    CreatedById = user.LastModifiedById
+                }) ;
+            }
             return result;
         }
 
@@ -81,6 +94,18 @@ namespace BLL
             int result = 0;
             UserMapper userMapper = new UserMapper();
             result = userMapper.Delete(userToDelete);
+            if(result != -2) {
+                LogManager logManager = new LogManager();
+                logManager.SaveLog(new LogEntity()
+                {
+                    EventType = EventType.ObjectDelete,
+                    Entity = "User",
+                    Message = "The User with Id " + userToDelete.Id + " has been deleted by " + userToDelete.LastModifiedById,
+                    LastModifiedById = userToDelete.LastModifiedById,
+                    CreatedById = userToDelete.LastModifiedById
+
+                }) ;
+            }
             return result;
         }
     }

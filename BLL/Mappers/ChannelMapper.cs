@@ -45,6 +45,8 @@ namespace BLL.Mappers
             }
             parameters.Add(this.access.BuildParameter("Type", entity.Type));
             parameters.Add(this.access.BuildParameter("Name", entity.Name));
+            parameters.Add(this.access.BuildParameter("CreatedById", entity.CreatedById));
+            parameters.Add(this.access.BuildParameter("LastModifiedById", entity.LastModifiedById));
             return parameters;
         }
 
@@ -58,6 +60,9 @@ namespace BLL.Mappers
                 channel.Name = row["Name"].ToString();
                 channel.Type = row["Type"].ToString();
                 channel.CreatedDate = DateTime.Parse(row["CreatedDate"].ToString());
+                channel.CreatedById = int.Parse(row["CreatedById"].ToString());
+                channel.LastModifiedById = int.Parse(row["LastModifiedById"].ToString());
+                channel.LastModifiedDate = DateTime.Parse(row["LastModifiedDate"].ToString());
                 channels.Add(channel);
             }
             return channels;
@@ -89,7 +94,15 @@ namespace BLL.Mappers
             int result = 0;
             try
             {
-                result = this.access.Save("dbo.UpsertChannel", this.GenerateParameters(entity));
+                if (entity.Id == 0)
+                {
+                    int id = this.access.Save("dbo.UpsertChannel", this.GenerateParameters(entity), true);
+                    entity.Id = id;
+                }
+                else
+                {
+                    result = this.access.Save("dbo.UpsertChannel", this.GenerateParameters(entity));
+                }
             }
             catch (Exception ex)
             {

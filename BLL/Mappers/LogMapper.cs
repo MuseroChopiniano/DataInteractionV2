@@ -27,8 +27,9 @@ namespace BLL.Mappers
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
             
-            parameters.Add(this.access.BuildParameter("EventType", entity.EventType));
+            parameters.Add(this.access.BuildParameter("EventType", entity.EventType.ToString()));
             parameters.Add(this.access.BuildParameter("Message", entity.Message));
+            parameters.Add(this.access.BuildParameter("Entity", entity.Entity));
             parameters.Add(this.access.BuildParameter("CreatedById",entity.CreatedById));
             parameters.Add(this.access.BuildParameter("LastModifiedById", entity.LastModifiedById));
 
@@ -42,8 +43,9 @@ namespace BLL.Mappers
             {
                 LogEntity log = new LogEntity();
                 log.Id = int.Parse(row["Id"].ToString());
-                log.EventType = row["EventType"].ToString();
+                log.EventType = (EventType) Enum.Parse(typeof(EventType),row["EventType"].ToString());
                 log.Message = row["Message"].ToString();
+                log.Entity = row["Entity"].ToString();
                 log.CreatedById = int.Parse(row["CreatedById"].ToString());
                 log.CreatedDate = DateTime.Parse(row["CreatedDate"].ToString());
                 log.LastModifiedById = int.Parse(row["LastModifiedById"].ToString());

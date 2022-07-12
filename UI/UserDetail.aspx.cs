@@ -16,8 +16,8 @@ namespace UI
         string action;
         UserManager manager = new UserManager();
         User contextUser = new User();
-
-        User currentUs = new User();
+        User userEdit = new User();
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             FormsIdentity id = (FormsIdentity)User.Identity;
@@ -34,7 +34,7 @@ namespace UI
             }
             else
             {
-                this.LoadPermissions(this.currentUs);
+                this.LoadPermissions(this.userEdit);
             }
         }
         private void LoadData()
@@ -52,7 +52,7 @@ namespace UI
                                                  select c).FirstOrDefault();
                 if (selectedUser != null)
                 {
-                    this.currentUs = selectedUser;
+                    this.userEdit = selectedUser;
                     this.BindData(selectedUser);
                     this.LoadPermissions(selectedUser);
                 }
@@ -63,7 +63,7 @@ namespace UI
                 {
                     Response.Redirect("/Auth/Unauthorized.aspx");
                 }
-                this.LoadPermissions(this.currentUs);
+                this.LoadPermissions(this.userEdit);
             }
         }
         private void BindData(User user)

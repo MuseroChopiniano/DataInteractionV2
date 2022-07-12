@@ -8,9 +8,20 @@ namespace BLL.Entities
 {
     public class LogEntity : SystemEntity
     {
-        public string EventType { get; set; }
+        public EventType EventType { get; set; }
 
         public string Message { get; set; }
 
+        public string Entity { get; set; }
+    }
+
+    public enum EventType
+    {
+        ObjectInsert,
+        ObjectUpdate,
+        ObjectDelete,
+        Login,
+        Logout,
+        PermissionChange
     }
 }
