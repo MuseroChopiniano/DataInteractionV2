@@ -13,17 +13,32 @@ namespace UI
     public partial class Permissions : System.Web.UI.Page
     {
         PermissionManager manager = new PermissionManager();
+        UserManager userManager = new UserManager();
+        User contextUser = new User();
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.LoadGridView();
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+            this.contextUser.Id = int.Parse(ticket.UserData);
+            if (!IsPostBack)
+            {
+                this.LoadGridView();
+            }
+            if (!userManager.HasPermission(this.contextUser, "Permission-Create"))
+            {
+                this.newBtnContainer.Visible = false;
+
+            }
         }
         private void LoadGridView()
         {
-            PermissionsGridView.DataSource = manager.GetParentPermissions();
-            PermissionsGridView.DataBind();
-            noRowsDiv.Visible = PermissionsGridView.Rows.Count == 0;
-            tableDiv.Visible = PermissionsGridView.Rows.Count > 0 ;
-
+            if (userManager.HasPermission(this.contextUser, "Permission-Read"))
+            {
+                PermissionsGridView.DataSource = manager.GetParentPermissions();
+                PermissionsGridView.DataBind();
+                noRowsDiv.Visible = PermissionsGridView.Rows.Count == 0;
+                tableDiv.Visible = PermissionsGridView.Rows.Count > 0;
+            }
         }
 
         protected void PermissionsGridView_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -42,6 +57,18 @@ namespace UI
         {
             PermissionsGridView.PageIndex = e.NewPageIndex;
             this.LoadGridView();
+        }
+        protected bool HasDeletePermission()
+        {
+            return this.userManager.HasPermission(this.contextUser, "Permission-Delete");
+        }
+
+        protected void PermissionsGridView_DataBound(object sender, EventArgs e)
+        {
+            if (!this.HasDeletePermission())
+            {
+                PermissionsGridView.Columns[PermissionsGridView.Columns.Count - 1].Visible = false;
+            }
         }
     }
 }

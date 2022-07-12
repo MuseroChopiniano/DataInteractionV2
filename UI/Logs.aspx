@@ -15,7 +15,8 @@
                                <Columns>
                                 <asp:BoundField DataField="Id" Visible="true" HeaderText="Id"/>
                                  <asp:BoundField DataField="EventType" HeaderText="Event Type"/>
-                                <asp:BoundField DataField="Message" HeaderText="Message" />
+                                 <asp:BoundField DataField="Entity" HeaderText="Entity"/>
+                                   <asp:BoundField DataField="Message" HeaderText="Message" />
                                 <asp:BoundField DataField="CreatedById" HeaderText="Created By Id" />
                                    <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" />
 

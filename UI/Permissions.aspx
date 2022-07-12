@@ -6,14 +6,14 @@
         </div>
         <div class="row">
             <div class="col-md-12 mb-4">
-                <div class="card-header d-flex justify-content-end">
+               <div id="newBtnContainer" runat="server" class="card-header d-flex justify-content-end">
                     <button id="HtmlNewBtn" type="button" Class="btn btn-primary di-button-primary m-1" onclick="window.location.href='/PermissionDetail.aspx?action=new'"><i class="fas fa-plus"> </i>&nbsp;<span runat="server" ID="NewBtn">New</span></button>
                    
                 </div>
                 <div class="card shadow border-left-primary  pb-2">
                     <div class="card-body">
                         <div Id="tableDiv" runat="server" class="table table-bordered table-responsive">
-                           <asp:GridView ID="PermissionsGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="PermissionsGridView_RowCommand" AllowPaging="True" OnPageIndexChanging="PermissionsGridView_PageIndexChanging">
+                           <asp:GridView OnDataBound="PermissionsGridView_DataBound" ID="PermissionsGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="PermissionsGridView_RowCommand" AllowPaging="True" OnPageIndexChanging="PermissionsGridView_PageIndexChanging">
                                <Columns>
                                 
                                 <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="PermissionDetail.aspx?Id={0}&action=edit" DataTextField="Name" Text="Name" HeaderText="Name" />

@@ -16,12 +16,22 @@ namespace UI
 
         string action;
         PermissionManager manager = new PermissionManager();
+        UserManager userManager = new UserManager();
+        User contextUser = new User();
 
 
         Permission currentPerm = new Permission();
         protected void Page_Load(object sender, EventArgs e)
-        {            
+        {
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+            this.contextUser.Id = int.Parse(ticket.UserData);
             this.action = Request.Params.Get("action");
+            if (this.action == null)
+            {
+                Response.Redirect("/PermissionDetail.aspx?action=new");
+            }
+
             if (!IsPostBack)
             {
                 this.LoadData();
@@ -35,6 +45,11 @@ namespace UI
         {
             if (action == "edit")
             {
+                if (!this.userManager.HasPermission(this.contextUser, "Permission-Edit"))
+                {
+                    Response.Redirect("/Auth/Unauthorized.aspx");
+                }
+
                 int permissionId = int.Parse(Request.Params.Get("id"));
                 List<Permission> permissions = manager.GetPermissions();
                 Permission selectedPermission = (from Permission c in permissions
@@ -48,6 +63,11 @@ namespace UI
                 }
             }
             else if (action == "new"){
+                if (!this.userManager.HasPermission(this.contextUser, "Permission-Create"))
+                {
+                    Response.Redirect("/Auth/Unauthorized.aspx");
+                }
+
                 this.loadPermissions(this.currentPerm);
             }
         }
