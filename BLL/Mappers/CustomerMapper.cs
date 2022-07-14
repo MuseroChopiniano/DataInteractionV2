@@ -18,8 +18,12 @@ namespace BLL.Mappers
             int result = 0;
             try
             {
-                SqlParameter parameter = new SqlParameter("Id", entity.Id);
-                result = this.access.Save("dbo.DeleteCustomer", new List<SqlParameter>() { parameter });
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                SqlParameter parameterId = new SqlParameter("Id", entity.Id);
+                SqlParameter parameterLastModifiedById = new SqlParameter("LastModifiedById", entity.LastModifiedById);
+                parameters.Add(parameterId);
+                parameters.Add(parameterLastModifiedById);
+                result = this.access.Save("dbo.DeleteCustomer", parameters );
             }
             catch (Exception ex)
             {
@@ -41,7 +45,7 @@ namespace BLL.Mappers
             List<Customer> customers = new List<Customer>();
             try
             {
-                DataTable table = this.access.Read("dbo.GetCustomers", null);
+                DataTable table = this.access.Read("dbo.GetCustomers", new List<SqlParameter>());
                 customers = MapEntityFromTable(table);
             }
             catch (Exception ex)
@@ -53,14 +57,22 @@ namespace BLL.Mappers
 
         public int Upsert(Customer entity)
         {
-            int result = -2;
+            int result = -1;
             try
             {
-                string storeProcedure = "dbo.UpsertCustomer";
-                result = this.access.Save(storeProcedure, this.GenerateParameters(entity));
+                if (entity.Id == 0)
+                {
+                    int Id = this.access.Save("dbo.UpsertCustomer", this.GenerateParameters(entity), true);
+                    entity.Id = Id;
+                }
+                else
+                {
+                    this.access.Save("dbo.UpsertCustomer", this.GenerateParameters(entity));
+                }
             }
             catch (Exception ex)
             {
+                result = -2;
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
             return result;
@@ -86,8 +98,11 @@ namespace BLL.Mappers
 
             parameters.Add(this.access.BuildParameter("Name", customer.Name));
             parameters.Add(this.access.BuildParameter("Email", customer.Email));
-            parameters.Add(this.access.BuildParameter("Gender", customer.Gender));
-            parameters.Add(this.access.BuildParameter("Age", customer.Age));
+            //parameters.Add(this.access.BuildParameter("Gender", customer.Gender));
+            parameters.Add(this.access.BuildParameter("DateOfBirth", customer.DateOfBirth.Value));
+            parameters.Add(this.access.BuildParameter("ExternalId", customer.ExternalId));
+            parameters.Add(this.access.BuildParameter("CreatedById", customer.CreatedById));
+            parameters.Add(this.access.BuildParameter("LastModifiedById", customer.LastModifiedById));
             return parameters;
         }
         public List<Customer> MapEntityFromTable(DataTable table)
@@ -99,8 +114,9 @@ namespace BLL.Mappers
                 cust.Id = int.Parse(row["Id"].ToString());
                 cust.Name = row["Name"].ToString();
                 cust.Email = row["Email"].ToString();
-                cust.Gender = row["Gender"].ToString();
-                cust.Age = int.Parse(row["Age"].ToString());
+                //cust.Gender = row["Gender"].ToString();
+                cust.ExternalId = row["ExternalId"].ToString();
+                cust.DateOfBirth = DateTime.Parse(row["DateOfBirth"].ToString());
                 cust.CreatedById = int.Parse(row["CreatedById"].ToString());
                 cust.LastModifiedById = int.Parse(row["LastModifiedById"].ToString());
                 cust.CreatedDate = DateTime.Parse(row["CreatedDate"].ToString());

@@ -72,7 +72,7 @@ namespace BLL
             int result = 0;
             UserMapper userMapper = new UserMapper();
             result = userMapper.Upsert(user);
-            if(result == 0)
+            if(result != -2)
             {
                 LogManager logManager = new LogManager();
                 logManager.SaveLog(new LogEntity()

@@ -24,7 +24,11 @@ namespace BLL.Mappers
             try
             {
                 SqlParameter parameter = new SqlParameter("Id", entity.Id);
-                result = this.access.Save("dbo.DeleteCampaign", new List<SqlParameter>() { parameter });
+                SqlParameter parameterLastModified = new SqlParameter("LastModifiedById", entity.LastModifiedById);
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                parameters.Add(parameter);
+                parameters.Add(parameterLastModified);
+                result = this.access.Save("dbo.DeleteCampaign", parameters);
             }
             catch (Exception ex)
             {
@@ -44,8 +48,8 @@ namespace BLL.Mappers
             }
             parameters.Add(this.access.BuildParameter("Status", entity.Status));
             parameters.Add(this.access.BuildParameter("Name", entity.Name));
-            //parameters.Add(this.access.BuildParameter("CreatedById", entity.CreatedById));
-            //parameters.Add(this.access.BuildParameter("LastModifiedById", entity.LastModifiedById));
+            parameters.Add(this.access.BuildParameter("CreatedById", entity.CreatedById));
+            parameters.Add(this.access.BuildParameter("LastModifiedById", entity.LastModifiedById));
             parameters.Add(this.access.BuildParameter("ActualCost", entity.ActualCost));
             parameters.Add(this.access.BuildParameter("BudgetedCost", entity.BudgetedCost));
             parameters.Add(this.access.BuildParameter("Description", entity.Description));
@@ -106,7 +110,15 @@ namespace BLL.Mappers
             int result = 0;
             try
             {
-                result = this.access.Save("dbo.UpsertCampaign", this.GenerateParameters(entity));
+                if (entity.Id == 0)
+                {
+                    int Id = this.access.Save("dbo.UpsertCampaign", this.GenerateParameters(entity), true);
+                    entity.Id = Id;
+                }
+                else
+                {
+                    this.access.Save("dbo.UpsertCampaign", this.GenerateParameters(entity));
+                }
             }
             catch (Exception ex)
             {

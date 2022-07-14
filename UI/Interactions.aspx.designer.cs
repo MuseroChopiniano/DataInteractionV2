@@ -24,6 +24,15 @@ namespace UI
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl InteractionsTitle;
 
         /// <summary>
+        /// newBtnContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl newBtnContainer;
+
+        /// <summary>
         /// NewBtn control.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl NewBtn;
+
+        /// <summary>
+        /// bulkBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton bulkBtn;
 
         /// <summary>
         /// Span1 control.
@@ -42,6 +60,15 @@ namespace UI
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Span1;
 
         /// <summary>
+        /// tableDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tableDiv;
+
+        /// <summary>
         /// InteractionsGridView control.
         /// </summary>
         /// <remarks>
@@ -49,6 +76,15 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView InteractionsGridView;
+
+        /// <summary>
+        /// noRowsDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noRowsDiv;
 
         /// <summary>
         /// DonwloadTempBtn control.

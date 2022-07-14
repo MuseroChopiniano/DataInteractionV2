@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BLL;
@@ -13,10 +14,18 @@ namespace UI
     {
         string action;
         CampaignManager manager = new CampaignManager();
-
+        UserManager userManager = new UserManager();
+        User contextUser = new User();
         protected void Page_Load(object sender, EventArgs e)
         {
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+            this.contextUser.Id = int.Parse(ticket.UserData);
             this.action = Request.Params.Get("action");
+            if (this.action == null)
+            {
+                Response.Redirect("/CampaignDetail.aspx?action=new");
+            }
             if (!IsPostBack)
             {
                 this.LoadData();
@@ -27,6 +36,10 @@ namespace UI
         {
             if (action == "edit")
             {
+                if (!this.userManager.HasPermission(this.contextUser, "Campaign-Edit"))
+                {
+                    Response.Redirect("/Auth/Unauthorized.aspx");
+                }
                 int campId = int.Parse(Request.Params.Get("id"));
                 List<Campaign> campaigns = manager.GetCampaigns();
                 Campaign selectedCamp = (from Campaign c in campaigns
@@ -35,6 +48,13 @@ namespace UI
                 if (selectedCamp != null)
                 {
                     this.BindData(selectedCamp);
+                }
+            }
+            else if (action == "new")
+            {
+                if (!this.userManager.HasPermission(this.contextUser, "Campaign-Create"))
+                {
+                    Response.Redirect("/Auth/Unauthorized.aspx");
                 }
             }
         }
@@ -60,6 +80,10 @@ namespace UI
                 int campId = int.Parse(Request.Params.Get("id"));
                 campToSave.Id = campId;
             }
+            if(action == "new")
+            {
+                campToSave.CreatedById = this.contextUser.Id;
+            }
             campToSave.Name = this.CampaignNameTxt.Text;
             campToSave.Status = this.CampaignstatusTxt.Text;
             campToSave.ActualCost = decimal.Parse(this.CampaignActualCostTxt.Text);
@@ -68,7 +92,12 @@ namespace UI
             campToSave.EndDate = DateTime.Parse(this.CampaignEndDateTxt.Text);
             campToSave.ExpectedRevenue = decimal.Parse(this.CampaignExpectedRevenueTxt.Text);
             campToSave.StartDate = DateTime.Parse(this.CampaignStartDateTxt.Text);
+            campToSave.LastModifiedById = this.contextUser.Id;
             manager.UpsertCampaign(campToSave);
+            Response.Redirect("Campaigns.aspx");
+        }
+        protected void CancelBtn_Click(object sender, EventArgs e)
+        {
             Response.Redirect("Campaigns.aspx");
         }
     }

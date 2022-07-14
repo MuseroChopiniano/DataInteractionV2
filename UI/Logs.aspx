@@ -10,7 +10,7 @@
                     </div>
                 <div class="card shadow border-left-primary  pb-2">
                     <div class="card-body">
-                        <div class="table table-bordered table-responsive">
+                         <div Id="tableDiv" runat="server" class="table table-bordered table-responsive">
                            <asp:GridView AllowPaging="true" OnPageIndexChanging="LogsGridView_PageIndexChanging" ID="LogsGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" >
                                <Columns>
                                 <asp:BoundField DataField="Id" Visible="true" HeaderText="Id"/>
@@ -25,6 +25,11 @@
                                <PagerStyle HorizontalAlign = "Center" CssClass = "di-GridPager" />
                            </asp:GridView>
                         </div>                        
+                         <div id="noRowsDiv" runat="server" class="row justify-content-center">
+                            <div class="col-md-4">
+                                <h5 class="rgba-primary-0">No Rows Found</h5>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

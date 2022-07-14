@@ -34,21 +34,46 @@ namespace BLL
             
         }
 
-        public void CreatePermission(Permission permission)
-        {
-            //TODO: 
-        } 
+        
 
         public void UpsertPermission(Permission permission)
         {
+            bool update = permission.Id != 0;
+            int result = 0;
             PermissionMapper mapper = new PermissionMapper();
-            mapper.Upsert(permission);
+            result = mapper.Upsert(permission);
+            if (result != -2)
+            {
+                LogManager logManager = new LogManager();
+                logManager.SaveLog(new LogEntity()
+                {
+                    EventType = update ? EventType.ObjectUpdate : EventType.ObjectInsert,
+                    Entity = "Permission",
+                    Message = "The Permission with Id " + permission.Id + " has been upserted by User with Id " + permission.LastModifiedById,
+                    LastModifiedById = permission.LastModifiedById,
+                    CreatedById = permission.LastModifiedById
+                });
+            }
         }
 
         public void DeletePermission(Permission permission)
         {
+            int result = 0;
             PermissionMapper mapper = new PermissionMapper();
-            mapper.Delete(permission);
+            result = mapper.Delete(permission);
+            if (result != -2)
+            {
+                LogManager logManager = new LogManager();
+                logManager.SaveLog(new LogEntity()
+                {
+                    EventType = EventType.ObjectDelete,
+                    Entity = "Permission",
+                    Message = "The Permission with Id " + permission.Id + " has been deleted by " + permission.LastModifiedById,
+                    LastModifiedById = permission.LastModifiedById,
+                    CreatedById = permission.LastModifiedById
+
+                });
+            }
         }
 
     }

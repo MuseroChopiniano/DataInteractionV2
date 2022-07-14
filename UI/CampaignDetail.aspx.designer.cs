@@ -78,6 +78,15 @@ namespace UI
         protected global::System.Web.UI.WebControls.TextBox CampaignActualCostTxt;
 
         /// <summary>
+        /// revNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revNumber;
+
+        /// <summary>
         /// CampaignBudgetedCost control.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,15 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox CampaignBudgetedCostTxt;
+
+        /// <summary>
+        /// RegularExpressionValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
 
         /// <summary>
         /// CampaignExpectedRevenue control.
@@ -114,6 +132,15 @@ namespace UI
         protected global::System.Web.UI.WebControls.TextBox CampaignExpectedRevenueTxt;
 
         /// <summary>
+        /// RegularExpressionValidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
+
+        /// <summary>
         /// CampaignStartDate control.
         /// </summary>
         /// <remarks>
@@ -132,6 +159,15 @@ namespace UI
         protected global::System.Web.UI.WebControls.TextBox CampaignStartDateTxt;
 
         /// <summary>
+        /// dateValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator dateValidator;
+
+        /// <summary>
         /// CampaignEndDate control.
         /// </summary>
         /// <remarks>
@@ -148,6 +184,15 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox CampaignEndDateTxt;
+
+        /// <summary>
+        /// CompareValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator CompareValidator1;
 
         /// <summary>
         /// CampaignDescription control.
@@ -175,5 +220,14 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button SaveBtn;
+
+        /// <summary>
+        /// CancelBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CancelBtn;
     }
 }

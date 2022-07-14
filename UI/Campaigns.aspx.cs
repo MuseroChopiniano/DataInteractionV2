@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BLL;
@@ -12,16 +13,32 @@ namespace UI
     public partial class Campaigns : System.Web.UI.Page
     {
         CampaignManager manager = new CampaignManager();
+        UserManager userManager = new UserManager();
+        User contextUser = new User();
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.LoadGridView();
-
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+            this.contextUser.Id = int.Parse(ticket.UserData);
+            if (!IsPostBack) { 
+                this.LoadGridView();
+            }
+            if (!userManager.HasPermission(this.contextUser, "Campaign-Create"))
+            {
+                this.newBtnContainer.Visible = false;
+            }
         }
 
         private void LoadGridView()
         {
-            CampaignsGridView.DataSource = manager.GetCampaigns();
+            if (userManager.HasPermission(this.contextUser, "Campaign-Read"))
+            {
+
+                CampaignsGridView.DataSource = manager.GetCampaigns();
             CampaignsGridView.DataBind();
+                noRowsDiv.Visible = CampaignsGridView.Rows.Count == 0;
+                tableDiv.Visible = CampaignsGridView.Rows.Count > 0;
+            }
         }
 
         protected void CampaignsGridView_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -29,7 +46,7 @@ namespace UI
             if (e.CommandName == "DeleteRow" && e.CommandArgument != null)
             {
                 int index = int.Parse((string)e.CommandArgument);
-                manager.DeleteCampaign(new Campaign() { Id = (int)CampaignsGridView.DataKeys[index].Value })
+                manager.DeleteCampaign(new Campaign() { Id = (int)CampaignsGridView.DataKeys[index].Value, LastModifiedById = this.contextUser.Id })
                ;
                 this.LoadGridView();
             }
@@ -39,6 +56,19 @@ namespace UI
         {
             this.CampaignsGridView.PageIndex = e.NewPageIndex;
             this.LoadGridView();
+        }
+
+        protected bool HasDeletePermission()
+        {
+            return this.userManager.HasPermission(this.contextUser, "Campaign-Delete");
+        }
+        protected void CampaignsGridView_DataBound(object sender, EventArgs e)
+        {
+            if (!this.HasDeletePermission())
+            {
+                CampaignsGridView.Columns[CampaignsGridView.Columns.Count - 1].Visible = false;
+            }
+
         }
     }
 }

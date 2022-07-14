@@ -22,6 +22,7 @@ namespace BLL.Entities
         ObjectDelete,
         Login,
         Logout,
-        PermissionChange
+        PermissionChange,
+        BulkOperation
     }
 }

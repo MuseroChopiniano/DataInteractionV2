@@ -24,6 +24,15 @@ namespace UI
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl CampaignsTitle;
 
         /// <summary>
+        /// newBtnContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl newBtnContainer;
+
+        /// <summary>
         /// NewBtn control.
         /// </summary>
         /// <remarks>
@@ -33,6 +42,15 @@ namespace UI
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl NewBtn;
 
         /// <summary>
+        /// tableDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tableDiv;
+
+        /// <summary>
         /// CampaignsGridView control.
         /// </summary>
         /// <remarks>
@@ -40,5 +58,14 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView CampaignsGridView;
+
+        /// <summary>
+        /// noRowsDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noRowsDiv;
     }
 }

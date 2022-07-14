@@ -24,6 +24,15 @@ namespace UI
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl LogTitle;
 
         /// <summary>
+        /// tableDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tableDiv;
+
+        /// <summary>
         /// LogsGridView control.
         /// </summary>
         /// <remarks>
@@ -31,5 +40,14 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView LogsGridView;
+
+        /// <summary>
+        /// noRowsDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noRowsDiv;
     }
 }

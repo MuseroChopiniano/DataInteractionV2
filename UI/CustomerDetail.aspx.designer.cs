@@ -60,40 +60,49 @@ namespace UI
         protected global::System.Web.UI.WebControls.TextBox CustomerEmailTxt;
 
         /// <summary>
-        /// CustomerAge control.
+        /// CustomerDateOfBirth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CustomerAge;
+        protected global::System.Web.UI.WebControls.Label CustomerDateOfBirth;
 
         /// <summary>
-        /// CustomerAgeTxt control.
+        /// CustomerDateOfBirthTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CustomerAgeTxt;
+        protected global::System.Web.UI.WebControls.TextBox CustomerDateOfBirthTxt;
 
         /// <summary>
-        /// CustomerGender control.
+        /// dateValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CustomerGender;
+        protected global::System.Web.UI.WebControls.CompareValidator dateValidator;
 
         /// <summary>
-        /// CustomerGenderTxt control.
+        /// CustomerExternalId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CustomerGenderTxt;
+        protected global::System.Web.UI.WebControls.Label CustomerExternalId;
+
+        /// <summary>
+        /// CustomerExternalIdTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CustomerExternalIdTxt;
 
         /// <summary>
         /// SaveBtn control.
@@ -103,5 +112,14 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button SaveBtn;
+
+        /// <summary>
+        /// CancelBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CancelBtn;
     }
 }

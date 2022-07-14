@@ -18,16 +18,38 @@ namespace UI
     public partial class Interactions : System.Web.UI.Page
     {
         InteractionManager manager = new InteractionManager();
+        UserManager userManager = new UserManager();
+        User contextUser = new User();
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.LoadGridView();
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+            this.contextUser.Id = int.Parse(ticket.UserData);
+            if (!IsPostBack)
+            {
+                this.LoadGridView();
+            }
+            if (!userManager.HasPermission(this.contextUser, "Interaction-Create"))
+            {
+                this.newBtnContainer.Visible = false;
 
+            }
+            if (!userManager.HasPermission(this.contextUser, "Interaction-Bulk Create"))
+            {
+                this.bulkBtn.Visible = false;
+
+            }
         }
 
         private void LoadGridView()
         {
-            InteractionsGridView.DataSource = manager.GetInteractions();
+            if (userManager.HasPermission(this.contextUser, "Interaction-Read"))
+            {
+                InteractionsGridView.DataSource = manager.GetInteractions();
             InteractionsGridView.DataBind();
+                noRowsDiv.Visible = InteractionsGridView.Rows.Count == 0;
+                tableDiv.Visible = InteractionsGridView.Rows.Count > 0;
+            }
         }
 
         protected void InteractionsGridView_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -35,7 +57,7 @@ namespace UI
             if (e.CommandName == "DeleteRow" && e.CommandArgument != null)
             {
                 int index = int.Parse((string)e.CommandArgument);
-                manager.DeleteInteraction(new Interaction() { Id = (int)InteractionsGridView.DataKeys[index].Value })
+                manager.DeleteInteraction(new Interaction() { Id = (int)InteractionsGridView.DataKeys[index].Value, LastModifiedById = this.contextUser.Id})
                ;
                 this.LoadGridView();
             }
@@ -89,6 +111,18 @@ namespace UI
         {
             InteractionsGridView.PageIndex = e.NewPageIndex;
             this.LoadGridView();
+        }
+
+        protected bool HasDeletePermission()
+        {
+            return this.userManager.HasPermission(this.contextUser, "Interaction-Delete");
+        }
+        protected void InteractionsGridView_DataBound(object sender, EventArgs e)
+        {
+            if (!this.HasDeletePermission())
+            {
+                InteractionsGridView.Columns[InteractionsGridView.Columns.Count - 1].Visible = false;
+            }
         }
     }
 }

@@ -24,7 +24,11 @@ namespace BLL.Mappers
             try
             {
                 SqlParameter parameter = new SqlParameter("Id", entity.Id);
-                result = this.access.Save("dbo.DeleteInteraction", new List<SqlParameter>() { parameter });
+                SqlParameter parameterLastModified = new SqlParameter("LastModifiedById", entity.LastModifiedById);
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                parameters.Add(parameter);
+                parameters.Add(parameterLastModified);
+                result = this.access.Save("dbo.DeleteInteraction", parameters);
             }
             catch (Exception ex)
             {
@@ -43,6 +47,8 @@ namespace BLL.Mappers
                 parameters.Add(this.access.BuildParameter("Id", entity.Id));
             }
             parameters.Add(this.access.BuildParameter("Type", entity.Type));
+            parameters.Add(this.access.BuildParameter("CreatedById", entity.CreatedById));
+            parameters.Add(this.access.BuildParameter("LastModifiedById", entity.LastModifiedById));
             parameters.Add(this.access.BuildParameter("CampaignId", entity.Campaign.Id));
             parameters.Add(this.access.BuildParameter("ChannelId", entity.Channel.Id));
             parameters.Add(this.access.BuildParameter("CustomerId", entity.Customer.Id));
@@ -65,6 +71,10 @@ namespace BLL.Mappers
                 interaction.Revenue = decimal.Parse(row["Revenue"].ToString());
                 interaction.Type = row["Type"].ToString();
                 interaction.CreatedDate = DateTime.Parse(row["CreatedDate"].ToString());
+                interaction.LastModifiedDate= DateTime.Parse(row["LastModifiedDate"].ToString());
+                interaction.CreatedById = int.Parse(row["CreatedById"].ToString());
+                interaction.LastModifiedById= int.Parse(row["LastModifiedById"].ToString());
+
                 interactions.Add(interaction);
             }
             return interactions;
@@ -144,7 +154,15 @@ namespace BLL.Mappers
             int result = 0;
             try
             {
-                result = this.access.Save("dbo.UpsertInteraction", this.GenerateParameters(entity));
+                if (entity.Id == 0)
+                {
+                    int Id = this.access.Save("dbo.UpsertInteraction", this.GenerateParameters(entity), true);
+                    entity.Id = Id;
+                }
+                else
+                {
+                    this.access.Save("dbo.UpsertInteraction", this.GenerateParameters(entity));
+                }
             }
             catch (Exception ex)
             {

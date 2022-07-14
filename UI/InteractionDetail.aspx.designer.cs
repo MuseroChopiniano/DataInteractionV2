@@ -114,6 +114,15 @@ namespace UI
         protected global::System.Web.UI.WebControls.TextBox InteractionDateTxt;
 
         /// <summary>
+        /// dateValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator dateValidator;
+
+        /// <summary>
         /// InteractionRevenue control.
         /// </summary>
         /// <remarks>
@@ -132,6 +141,15 @@ namespace UI
         protected global::System.Web.UI.WebControls.TextBox InteractionRevenueTxt;
 
         /// <summary>
+        /// revNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revNumber;
+
+        /// <summary>
         /// SaveBtn control.
         /// </summary>
         /// <remarks>
@@ -139,5 +157,14 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button SaveBtn;
+
+        /// <summary>
+        /// CancelBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CancelBtn;
     }
 }

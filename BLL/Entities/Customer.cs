@@ -18,21 +18,29 @@ namespace BLL.Entities
 			set { name = value; }
 		}
 
-		private int age;
+		
 
 		public int Age
 		{
-			get { return age; }
-			set { age = value; }
+			get {
+				if (this.DateOfBirth != null)
+				{
+					var age = DateTime.Today.Year - this.DateOfBirth.Value.Year;
+					if (this.DateOfBirth.Value.Date > DateTime.Today.AddYears(-age))
+					{
+						age--;
+					};
+					return age;
+				}
+				else return 0;
+			}
 		}
 
-		private string gender;
+		public DateTime? DateOfBirth { get; set; }
 
-		public string Gender
-		{
-			get { return gender; }
-			set { gender = value; }
-		}
+		public string ExternalId { get; set; }
+
+	
 
 		private string email;
 

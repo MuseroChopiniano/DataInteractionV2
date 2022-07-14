@@ -62,7 +62,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="/Customers.aspx">
                             <i class="fas fa-id-card"></i>
-                            <span runat="server" ID="CustomersAnchor">Customers</span>
+                            <span runat="server" ID="CustomersAnchor">Contacts</span>
                         </a>
                     </li>
                     <li class="nav-item">
