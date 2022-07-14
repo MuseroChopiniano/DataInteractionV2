@@ -75,28 +75,45 @@ namespace UI
                 UploadControl.SaveAs(tempPathForFile);
                 ReadCsv(tempPathForFile);
             }
+            
         }
         private void ReadCsv(String path)
         {
             FormsIdentity id = (FormsIdentity)User.Identity;
             FormsAuthenticationTicket ticket = id.Ticket;
-
-            using (var reader = new StreamReader(path))
+            try
             {
-                var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture);
-                using ( var csv = new CsvReader(reader, csvConfig))
+                using (var reader = new StreamReader(path))
                 {
-                    csv.Context.RegisterClassMap<InteractionMap>();
-                    var records = csv.GetRecords<Interaction>();
-                    List<Interaction> interactions = records.ToList();
-                    interactions.ForEach(i => {
-                        i.CreatedById = int.Parse(ticket.UserData);
-                        i.LastModifiedById = int.Parse(ticket.UserData);
-                    });
+                    var csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture);
+                    using (var csv = new CsvReader(reader, csvConfig))
+                    {
+                        csv.Context.RegisterClassMap<InteractionMap>();
+                        var records = csv.GetRecords<Interaction>();
+                        List<Interaction> interactions = records.ToList();
+                        interactions.ForEach(i =>
+                        {
+                            i.CreatedById = int.Parse(ticket.UserData);
+                            i.LastModifiedById = int.Parse(ticket.UserData);
+                        });
 
-                    this.manager.UpsertInteraction(interactions);
-                } }
-         
+                        this.manager.UpsertInteraction(interactions);
+
+                    }
+                }
+                this.LoadGridView();
+            } catch (Exception ex)
+            {
+                String csname = "PopupScript";
+                Type cstype = this.GetType();
+                ClientScriptManager cs = Page.ClientScript;
+                if (!cs.IsStartupScriptRegistered(cstype, csname))
+                {
+                    String cstext = "showError();";
+                    cs.RegisterStartupScript(cstype, csname, cstext, true);
+                }
+                }
+           
         }
 
         protected void DonwloadTempBtn_Click(object sender, EventArgs e)

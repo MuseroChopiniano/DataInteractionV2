@@ -10,7 +10,7 @@ namespace BLL.Entities
     {
 		
 
-		private string name;
+		private string name ="";
 
 		public string Name
 		{

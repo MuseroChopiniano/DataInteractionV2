@@ -55,6 +55,13 @@ namespace BLL.Mappers
             return customers;
         }
 
+        public List<Customer> ReadFromSegment(Segment segment)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("SegmentId", segment.Id));
+            return MapEntityFromTable(this.access.Read("dbo.GetSegmentCustomers", parameters));
+        }
+
         public int Upsert(Customer entity)
         {
             int result = -1;

@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InteractionDetail.aspx.cs" Inherits="UI.InteractionDetail" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentPlaceholder" runat="server">
+     <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
 <div class="container-fluid">
          <div class="col-12 mb-4">
               <h1 class="page-header rgba-primary-0" runat="server" ID="InteractionTitle">Interaction</h1> 
@@ -17,16 +18,21 @@
                         </div>
                         <div class="form-group col-md-6">
                             <asp:Label runat="server" ID="InteractionChannel" class="col-form-label" Text="Channel"></asp:Label>
-                            <asp:TextBox runat="server" class="form-control" ID="InteractionChannelTxt" required ></asp:TextBox>      
+                           <!-- <asp:TextBox runat="server" class="form-control" ID="InteractionChannelTxt" required ></asp:TextBox> -->
+                            <asp:DropDownList runat="server" CssClass="form-control" ID="InteractionChannelDropdown"></asp:DropDownList>
                         </div>
                         <div class="form-group col-md-6">
                             <asp:Label runat="server" ID="InteractionCustomer" class="col-form-label" Text="Customer"></asp:Label>
-                            <asp:TextBox runat="server" class="form-control" ID="InteractionCustomerTxt" ></asp:TextBox>      
-                        </div>
+                            <asp:DropDownList runat="server" CssClass="form-control" ID="InteractionCustomerDropdown"></asp:DropDownList>
+                       
+                       <!--     <asp:TextBox runat="server" class="form-control" ID="InteractionCustomerTxt" ></asp:TextBox>      
+                       --> </div>
                        <div class="form-group col-md-6">
                             <asp:Label runat="server" ID="InteractionCampaign" class="col-form-label" Text="Campaign"></asp:Label>
-                            <asp:TextBox runat="server" class="form-control" ID="InteractionCampaignTxt"  ></asp:TextBox>      
-                        </div>
+                           <asp:DropDownList runat="server" CssClass="form-control" ID="InteractionCampaignDropdown"></asp:DropDownList>
+                       
+                       <!--     <asp:TextBox runat="server" class="form-control" ID="InteractionCampaignTxt"  ></asp:TextBox>      
+                        --></div>
                           <div class="form-group col-md-6">
                             <asp:Label runat="server" ID="InteractionDate" class="col-form-label" Text="Date"></asp:Label>
                             <asp:TextBox runat="server" class="form-control" ID="InteractionDateTxt" TextMode="Date"  required></asp:TextBox>      
@@ -60,37 +66,8 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#MainContentPlaceholder_InteractionChannelTxt").autocomplete({
-                source: function (request, response) {
-                    var param = { ChannelName: $('#MainContentPlaceholder_InteractionChannelTxt').val() };
-                    $.ajax({
-                        url: "InteractionDetail.aspx/getChannels",
-                        data: JSON.stringify(param),
-                        dataType: "json",
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        dataFilter: function (data) { return data; },
-                        success: function (data) {
-                            console.log(JSON.stringify(data));
-                            response($.map(data.d, function (item) {
-                                return {
-                                    value: item.Name
-                                }
-                            }))
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            var err = eval("(" + XMLHttpRequest.responseText + ")");
-                            alert(err.Message)
-                            // console.log("Ajax Error!");    
-                        }
-                    });
-                },
-                minLength: 1 //This is the Char length of inputTextBox    
-            });
-        });  
-    }
+   
+    
 
 </script>
 </asp:Content>

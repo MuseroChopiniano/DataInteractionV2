@@ -50,16 +50,16 @@ namespace UI
 
             var result = this.interactions.Where(x => x.Date > DateTime.Now.AddMonths(-12)).GroupBy(i => new
             {
-                i.Channel.Id,
+                i.Channel.Name,
                 i.Date.Year,
                 i.Date.Month,
             }).Select(g => new
             {
-                g.Key.Id,
+                g.Key.Name,
                 my = g.Key.Month.ToString()  + "/" + g.Key.Year.ToString(),
                 count = g.Count()
             }).GroupBy(
-                x => new { x.Id }
+                x => new { x.Name }
                 ).ToList();
 
 
@@ -70,7 +70,7 @@ namespace UI
             foreach (var item in result)
             {
                 List<int> currentData = new List<int>();
-                LineChartData chartData = new LineChartData() { label = item.Key.Id.ToString() };
+                LineChartData chartData = new LineChartData() { label = item.Key.Name.ToString() };
                 foreach (var month in labelsList)
                 {
                     int counter = 0;
@@ -120,9 +120,9 @@ namespace UI
                 this.interactions = interactionManager.GetInteractions();
             }
             var result = this.interactions.GroupBy(x=>
-                x.Channel.Id).Select(y => new
+                x.Channel.Name).Select(y => new
             {
-                y.First().Channel.Id,
+                y.First().Channel.Name,
                 revenue = y.Sum(z=>z.Revenue) 
             }).ToList() ;
 
@@ -132,7 +132,7 @@ namespace UI
 
             string initialTag = "<script type=\"text/javascript\">";
             string endTag = "</script>";
-            string labelScript = "var revByChannelLabels = ['" + string.Join("','", result.Select(x=>x.Id).ToArray()) + "'];";
+            string labelScript = "var revByChannelLabels = ['" + string.Join("','", result.Select(x=>x.Name).ToArray()) + "'];";
             string datascript = "var revByChannelValues = " + JsonConvert.SerializeObject(result.Select(x=>x.revenue).ToArray()) + ";";
             string script = initialTag + labelScript + datascript + endTag;
             ClientScript.RegisterStartupScript(this.GetType(), "RevByChannel", script);
@@ -182,7 +182,10 @@ namespace UI
             ClientScript.RegisterStartupScript(this.GetType(), "BudgetVariance", script);
         }
         private void calculateROI() {
-            this.ROI = (this.TotalRevenue - this.TotalSpending) / this.TotalSpending;
+            if(this.TotalSpending > 0)
+            {
+                this.ROI = (this.TotalRevenue - this.TotalSpending) / this.TotalSpending;
+            }
             this.ROISpan.InnerText = ROI.ToString("c", CultureInfo.CurrentCulture);
         }
 

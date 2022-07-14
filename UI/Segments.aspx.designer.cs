@@ -24,6 +24,15 @@ namespace UI
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl SegmentTitle;
 
         /// <summary>
+        /// newBtnContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl newBtnContainer;
+
+        /// <summary>
         /// NewBtn control.
         /// </summary>
         /// <remarks>
@@ -42,6 +51,24 @@ namespace UI
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Span1;
 
         /// <summary>
+        /// Span2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Span2;
+
+        /// <summary>
+        /// tableDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tableDiv;
+
+        /// <summary>
         /// SegmentsGridView control.
         /// </summary>
         /// <remarks>
@@ -51,12 +78,21 @@ namespace UI
         protected global::System.Web.UI.WebControls.GridView SegmentsGridView;
 
         /// <summary>
-        /// SaveUserBtn control.
+        /// noRowsDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SaveUserBtn;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noRowsDiv;
+
+        /// <summary>
+        /// SaveSegmentBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SaveSegmentBtn;
     }
 }

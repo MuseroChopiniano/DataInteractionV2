@@ -24,7 +24,11 @@ namespace BLL.Mappers
             try
             {
                 SqlParameter parameter = new SqlParameter("Id", entity.Id);
-                result = this.access.Save("dbo.DeleteSegment", new List<SqlParameter>() { parameter });
+                SqlParameter parameterLastModified = new SqlParameter("LastModifiedById", entity.LastModifiedById);
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                parameters.Add(parameter);
+                parameters.Add(parameterLastModified);
+                result = this.access.Save("dbo.DeleteSegment", parameters);
             }
             catch (Exception ex)
             {
@@ -90,15 +94,43 @@ namespace BLL.Mappers
             return segments;
         }
 
+        private void UpsertChildCustomers(Segment segment)
+
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("SegmentId", typeof(int));
+            table.Columns.Add("CustomerId", typeof(int));
+
+            foreach (Customer customer in segment.Customers)
+            {
+                table.Rows.Add(segment.Id, customer.Id);
+            }
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("PermTable", table));
+            parameters.Add(this.access.BuildParameter("Parent", segment.Id));
+            this.access.Save("dbo.UpsertSegmentCustomers", parameters);
+        }
         public int Upsert(Segment entity)
         {
             int result = 0;
+            this.access.InitiateTransaction();
             try
             {
-                result = this.access.Save("dbo.UpsertSegment", this.GenerateParameters(entity));
+                if (entity.Id == 0)
+                {
+                    int Id = this.access.Save("dbo.UpsertSegment", this.GenerateParameters(entity), true);
+                    entity.Id = Id;
+                }
+                else
+                {
+                    this.access.Save("dbo.UpsertSegment", this.GenerateParameters(entity));
+                }
+                this.UpsertChildCustomers(entity);
+                this.access.CommitTransaction();
             }
             catch (Exception ex)
             {
+                this.access.RollbackTransaction();
                 System.Diagnostics.Debug.WriteLine(ex.Message);
                 result = -2;
             }

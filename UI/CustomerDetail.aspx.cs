@@ -75,6 +75,10 @@ namespace UI
             {
                 int custId = int.Parse(Request.Params.Get("id"));
                 saveCustomer.Id = custId;
+                
+            }
+            else
+            {
                 saveCustomer.CreatedById = contextUser.Id;
             }
             saveCustomer.Name = this.CustomerNameTxt.Text;

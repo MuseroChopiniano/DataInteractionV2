@@ -10,23 +10,51 @@
                 </div>
                 <div class="card shadow border-left-primary  pb-2">
                     <div class="card-body">
-                        <div class="form-group">
+                         <div class="row">
+                        <div class="form-group col-md-6">
                             <asp:Label runat="server" ID="SegmentNameLbl" class="col-form-label" Text="Name"></asp:Label>
                             <asp:TextBox runat="server" class="form-control" ID="SegmentNameTxt" required ></asp:TextBox>      
-                        </div>
-                        <div class="form-group">
+                        </div> </div>
+                              <div class="row">
+                       <div class="form-group col-md-6">
                             <asp:Label runat="server" ID="SegmentTypeLbl" class="col-form-label" Text="Type"></asp:Label>
                             <asp:TextBox runat="server" class="form-control" ID="SegmentTypeTxt" required ></asp:TextBox>      
                         </div>
                         
-                       <div class="form-group">
+                       <div class="form-group col-md-6">
                             <asp:Label runat="server" ID="SegmentDescription" class="col-form-label" Text="Description"></asp:Label>
-                            <asp:TextBox runat="server" class="form-control" ID="SegmentDescriptionTxt" TextMode="MultiLine" ></asp:TextBox>      
+                            <asp:TextBox runat="server" class="form-control" ID="SegmentDescriptionTxt" TextMode="MultiLine" required></asp:TextBox>      
                         </div>
-                      
-                        <div class="form-group">
+                       </div>
+                         <div class="card mb-2">
+                            <div class="card-header">Contacts</div>
+                              <div class="card-body">
+                        <div Id="tableDiv" runat="server" class="table table-bordered table-responsive">
+                           <asp:GridView  ID="CustomersGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="CustomersGridView_RowCommand">
+                               <Columns>
+                                <asp:BoundField DataField="Id" Visible="False" />
+                                <asp:BoundField  DataField="Name" HeaderText="Name" />
+                                <asp:BoundField DataField="Email" HeaderText="Email"/>
+                                <asp:BoundField DataField="Age" HeaderText="Age" />
+                                <asp:BoundField DataField="DateOfBirth" HeaderText="Birthdate" />
+                                                   </Columns></asp:GridView>
+                        </div>           
+                         <div id="noRowsDiv" runat="server" class="row justify-content-center">
+                            <div class="col-md-4">
+                                <h5 class="rgba-primary-0">No Rows Found</h5>
+                            </div>
+                        </div>
+                    </div>
+                            </div>
+
+                       <div class="container">
+                            <div class="row">
+                                  <div class="form-group col text-center">
                             <asp:Button CssClass="btn btn-primary di-button-primary" runat="server" ID="SaveBtn" Text="Save" OnClick="SaveBtn_Click"/>
-                        </div>
+                         <asp:Button CssClass="btn btn-secondary di-button-secondary" runat="server" ID="CancelBtn" Text="Cancel" OnClientClick="window.location.href='Segments.aspx'; return false;"/>
+                                  </div>
+                            </div>
+                                  </div>
                     </div>
                 </div>
             </div>

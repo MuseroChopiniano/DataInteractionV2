@@ -15,6 +15,15 @@ namespace UI
     {
 
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
         /// InteractionTitle control.
         /// </summary>
         /// <remarks>
@@ -60,6 +69,15 @@ namespace UI
         protected global::System.Web.UI.WebControls.TextBox InteractionChannelTxt;
 
         /// <summary>
+        /// InteractionChannelDropdown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList InteractionChannelDropdown;
+
+        /// <summary>
         /// InteractionCustomer control.
         /// </summary>
         /// <remarks>
@@ -67,6 +85,15 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label InteractionCustomer;
+
+        /// <summary>
+        /// InteractionCustomerDropdown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList InteractionCustomerDropdown;
 
         /// <summary>
         /// InteractionCustomerTxt control.
@@ -85,6 +112,15 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label InteractionCampaign;
+
+        /// <summary>
+        /// InteractionCampaignDropdown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList InteractionCampaignDropdown;
 
         /// <summary>
         /// InteractionCampaignTxt control.

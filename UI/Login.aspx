@@ -53,7 +53,8 @@
                             
                                 <div class="form-group text-center">
  
-                                <a href="/Auth/ForgotPass.aspx"><span>Forgot Password?</span></a>
+                                    <span id="errorMessage" runat="server" class="alert-danger" visible="false"></span>
+                                 <!-- <a href="/Auth/ForgotPass.aspx"><span>Forgot Password?</span></a>-->
                                 
                             </div>
                         </form>

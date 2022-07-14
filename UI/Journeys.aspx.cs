@@ -24,6 +24,11 @@ namespace UI
             if(this.interactions == null)
             {
                 this.interactions = this.interactionManager.GetInteractions();
+                if(this.interactions.Count == 0)
+                {
+                    this.noRowsDiv.Visible = true;
+                    this.JourneySankey.Visible = false;
+                }
             }
 
             var result = interactions.OrderBy(x => x.Date).GroupBy(y => y.Customer.Id).ToList();

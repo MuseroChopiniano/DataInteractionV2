@@ -19,14 +19,50 @@ namespace BLL
 
         public void UpsertSegment(Segment segment)
         {
+            bool update = segment.Id != 0;
+            int result = 0;
+
             SegmentMapper mapper = new SegmentMapper();
-            mapper.Upsert(segment);
+            result = mapper.Upsert(segment);
+            if (result != -2)
+            {
+                LogManager logManager = new LogManager();
+                logManager.SaveLog(new LogEntity()
+                {
+                    EventType = update ? EventType.ObjectUpdate : EventType.ObjectInsert,
+                    Entity = "Segment",
+                    Message = "The Segment with Id " + segment.Id + " has been upserted by User with Id " + segment.LastModifiedById,
+                    LastModifiedById = segment.LastModifiedById,
+                    CreatedById = segment.LastModifiedById
+                });
+            }
+
+        }
+
+        internal List<Customer> GetCustomers(Segment segment)
+        {
+            CustomerMapper mapper = new CustomerMapper();
+            return mapper.ReadFromSegment(segment);
         }
 
         public void DeleteSegment(Segment segment)
         {
+            int result = 0;
             SegmentMapper mapper = new SegmentMapper();
-            mapper.Delete(segment);
+            result = mapper.Delete(segment);
+            if (result != -2)
+            {
+                LogManager logManager = new LogManager();
+                logManager.SaveLog(new LogEntity()
+                {
+                    EventType = EventType.ObjectDelete,
+                    Entity = "Segment",
+                    Message = "The Segment with Id " + segment.Id + " has been deleted by " + segment.LastModifiedById,
+                    LastModifiedById = segment.LastModifiedById,
+                    CreatedById = segment.LastModifiedById
+
+                });
+            }
         }
     }
 }

@@ -54,5 +54,11 @@ namespace BLL
                 });
             }
         }
+
+        public Campaign GetCampaigns(Campaign campaign)
+        {
+            List<Campaign> campaigns = this.GetCampaigns();
+            return campaigns.Find(x => x.Id == campaign.Id);
+        }
     }
 }

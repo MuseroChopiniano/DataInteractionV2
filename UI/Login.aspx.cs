@@ -50,6 +50,8 @@ namespace UI
                     }
                     else
                     {
+                        this.errorMessage.InnerText = "The user is blocked";
+                        this.errorMessage.Visible = true;
                        //TODO: show Blocked Message
                     }
                 }
@@ -57,12 +59,16 @@ namespace UI
                 {
                     currentUser.IncreaseBlockCounter();
                     manager.UpsertUser(currentUser);
-                   
-                }  
+                    this.errorMessage.InnerText = "The user or Password that you're trying to use is wrong";
+                    this.errorMessage.Visible = true;
+
+                }
             }
             else
             {
-                Response.Redirect("Login.aspx", true);
+                this.errorMessage.InnerText = "The user or Password that you're trying to use is wrong";
+                this.errorMessage.Visible = true;
+             //   Response.Redirect("Login.aspx", true);
             }
         }
 

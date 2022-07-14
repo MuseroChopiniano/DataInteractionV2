@@ -46,6 +46,28 @@
         </div>
     
     </div>
+    <div class="modal fade" id="ErrorModal" role="alert"  >
+        <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Something Went Wrong</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div class="alert alert-block alert-danger">
+                
+                   Something went wrong trying to upload your file. Please check the data types and columns.
+                </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+        
+    </div>
     <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
@@ -61,13 +83,13 @@
                                 </div>
                             <div class="form-group">
                               <asp:FileUpload ID="UploadControl" runat="server"  />
-                    <asp:button id="UploadBtn" CssClass="btn btn-primary di-button-primary m-1" runat="server" OnClick="UploadBtn_Click" text="Upload"/>
+                 
                             </div>
                             
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary bg-secondary" data-dismiss="modal">Close</button>
-                            <asp:Button Id="SaveUserBtn" Text="Save" CssClass="btn btn-primary di-button-primary"  runat="server" />
+                            <asp:Button Id="SaveUserBtn"  OnClick="UploadBtn_Click" Text="Upload" CssClass="btn btn-primary di-button-primary"  runat="server" />
                         </div>
                       </div>
                     </div>
@@ -92,6 +114,9 @@
                     </div>
                   </div>
      <script type="text/javascript">
+         function showError() {
+             $('#ErrorModal').modal();
+         };
          console.log($('#formModal'));
          $('#formModal').on('show.bs.modal', function (event) {
                  console.log(event);

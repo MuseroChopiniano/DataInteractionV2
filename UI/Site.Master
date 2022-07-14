@@ -33,20 +33,20 @@
                             <span runat="server" ID="HomeAnchor">Home</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li id="UserMenu" runat="server" class="nav-item">
                         <a class="nav-link active" href="/Users.aspx">
                             <i class="fas fa-user"></i>
                             <span runat="server" ID="UsersAnchor">Users</span>
                         </a>
                     </li>
-                      <li class="nav-item">
+                      <li id="PermissionMenu" runat="server" class="nav-item">
                         <a class="nav-link active" href="/Permissions.aspx">
                             <i class="fa-solid fa-unlock"></i>
                             <span runat="server" ID="PermissionsAnchor">Permissions</span>
                         </a>
                     </li>
                     
-                    <li class="nav-item">
+                    <li id="LogMenu" runat="server" class="nav-item">
                         <a class="nav-link active" href="/Logs.aspx">
                             <i class="fas fa-history"></i>
                             <span runat="server" ID="LogsAnchor">Logs</span>
@@ -59,41 +59,41 @@
                             <span runat="server" ID="LanguagesAnchor">Languages</span>
                         </a>
                     </li>--%>
-                    <li class="nav-item">
+                    <li id="CustomerMenu" runat="server" class="nav-item">
                         <a class="nav-link active" href="/Customers.aspx">
                             <i class="fas fa-id-card"></i>
                             <span runat="server" ID="CustomersAnchor">Contacts</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li id="CampaignMenu" runat="server" class="nav-item">
                         <a class="nav-link active" href="/Campaigns.aspx">
                             <i class="fas fa-paper-plane"></i>
                             <span runat="server" ID="CampaignsAnchor">Campaigns</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li id="ChannelMenu" runat="server" class="nav-item">
                         <a class="nav-link active" href="/Channels.aspx">
                             <i class="fas fa-rss"></i>
                             <span runat="server" ID="ChannelsAnchor">Channels</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li id="InteractionMenu" runat="server"  class="nav-item">
                         <a class="nav-link active" href="/Interactions.aspx">
                            <i class="fas fa-mouse-pointer"></i>
                             <span runat="server" ID="InteractionsAnchor">Interactions</span>
                         </a>
                     </li>
-                                        <li class="nav-item">
+                                        <li id="SegmentMenu" runat="server" class="nav-item">
                         <a class="nav-link active" href="/Segments.aspx">
                            <i class="fas fa-braille"></i>
                             <span runat="server" ID="SegmentsAnchor">Segments</span>
                         </a>
                     </li>
                   
-                    <li class="nav-item">
+                    <li id="JourneyMenu" runat="server" class="nav-item">
                         <a class="nav-link active" href="/Journeys.aspx">
                            <i class="fa-solid fa-bezier-curve"></i>
-                            <span runat="server" ID="Span1">Journeys</span>
+                            <span runat="server" ID="JourneyAnchor">Journeys</span>
                         </a>
                     </li>
                 </ul>
@@ -126,20 +126,20 @@
                     <div class="container-fluid">
                         <div class="form-inline d-none d-sm-inline-block mr-auto ml-md3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="input-group">
-                                <input class="form-control bg-light border-0 small" style="width:20em;" placeholder="Search here..."/>
+                               <!-- <input class="form-control bg-light border-0 small" style="width:20em;" placeholder="Search here..."/>
                                 <div class="input-group-append">
                                     <button class="btn btn-primary di-button-primary pb-0" type="button" >
                                         <i class="fas fa-search"></i>
                                     </button>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <ul class="navbar-nav flex-nowrap ml-auto">
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow border-0 rounded-circle">
                                     <a href="#" class="dropdown-toggle text-decoration-none color-primary-0" data-toggle="dropdown" id="dropdownMenu" aria-expanded="false" aria-haspopup="false">
-                                        <span runat="server" ID="usernameSpan" class="d-none d-lg-inline mr-2 text-gray-600 small">Gastón Suárez</span>
-                                        <img src="Images/ProfilePic.png" class="border rounded-circle img-profile" style="width:35px"/>
+                                        <span runat="server" ID="usernameSpan" class="d-none d-lg-inline mr-2 text-gray-600 small"></span>
+                                        <!--<img src="Images/ProfilePic.png" class="border rounded-circle img-profile" style="width:35px"/>-->
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="drodpdownMenu">
                                         <asp:LinkButton Id="CloseSessionBtn" Text="Cerrar Sesión" runat="server" onclick="CloseSessionBtn_Click" CssClass="dropdown-item"/>

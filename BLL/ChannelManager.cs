@@ -38,6 +38,12 @@ namespace BLL
             }
         }
 
+        public Channel GetChannels(Channel channel)
+        {
+            List<Channel> channels = this.GetChannels();
+            return channels.Find(x => x.Id == channel.Id);
+        }
+
         public void DeleteChannel(Channel channel)
         {
 

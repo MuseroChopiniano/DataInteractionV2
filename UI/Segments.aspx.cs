@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BLL;
@@ -14,16 +15,34 @@ namespace UI
     {
         SegmentManager manager = new SegmentManager();
         InteractionManager interactionManager = new InteractionManager();
+        UserManager userManager = new UserManager();
+        User contextUser = new User();
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.LoadGridView();
-            this.GenerateMostEngageSegment();
+            FormsIdentity id = (FormsIdentity)User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+            this.contextUser.Id = int.Parse(ticket.UserData);
+            if (!IsPostBack)
+            {
+                this.LoadGridView();
+                this.GenerateMostEngageSegment();
+            }
+            if (!userManager.HasPermission(this.contextUser, "Segment-Create"))
+            {
+                this.newBtnContainer.Visible = false;
+
+            }
         }
 
         private void LoadGridView()
         {
-            SegmentsGridView.DataSource = manager.GetSegments();
-            SegmentsGridView.DataBind();
+            if (userManager.HasPermission(this.contextUser, "Segment-Read"))
+            {
+                SegmentsGridView.DataSource = manager.GetSegments();
+                   SegmentsGridView.DataBind();
+                noRowsDiv.Visible = SegmentsGridView.Rows.Count == 0;
+                tableDiv.Visible = SegmentsGridView.Rows.Count > 0;
+            }
         }
 
         protected void SegmentsGridView_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -31,7 +50,7 @@ namespace UI
             if (e.CommandName == "DeleteRow" && e.CommandArgument != null)
             {
                 int index = int.Parse((string)e.CommandArgument);
-                manager.DeleteSegment(new Segment() { Id = (int)SegmentsGridView.DataKeys[index].Value })
+                manager.DeleteSegment(new Segment() { Id = (int)SegmentsGridView.DataKeys[index].Value, LastModifiedById = this.contextUser.Id })
                ;
                 this.LoadGridView();
             }
@@ -46,7 +65,7 @@ namespace UI
         private void GenerateMostEngageSegment()
         {
             List<Interaction> interactions = interactionManager.GetInteractions();
-            var result = interactions.GroupBy(x => x.Customer.Id).ToList();
+            var result = interactions.FindAll(x=>x.Customer != null).GroupBy(x => x.Customer.Id).ToList();
 
             int numClusters = 3;
             double[][] data = new double[result.Count()][];
@@ -55,9 +74,11 @@ namespace UI
                 data[i] = new double[] { result.ElementAt(i).Select(x => (double)x.Customer.Age).First(), result.ElementAt(i).Count() };
 
             }
-
-            int[] clusters = ClusterHelper.Cluster(data, numClusters);
-            ShowSegmentData(data, clusters, numClusters);
+            if(numClusters< data.Length) {
+                int[] clusters = ClusterHelper.Cluster(data, numClusters);
+                ShowSegmentData(data, clusters, numClusters);
+            }
+            
         }
         
         String[] colors = new string[]{ "#fe6384", "#36a2eb", "rgb(255, 205, 86)" };
@@ -108,6 +129,25 @@ namespace UI
         {
             public double x;
             public double y;
+        }
+
+        protected bool HasDeletePermission()
+        {
+            return this.userManager.HasPermission(this.contextUser, "Segment-Delete");
+        }
+
+        protected void SegmentsGridView_DataBound(object sender, EventArgs e)
+        {
+            if (!this.HasDeletePermission())
+            {
+                SegmentsGridView.Columns[SegmentsGridView.Columns.Count - 1].Visible = false;
+            }
+
+        }
+
+        protected void SaveSegmentBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
