@@ -28,26 +28,26 @@
                 <hr class="sidebar-divider my-0" />
                 <ul id="accordionSidebar" class="navbar-nav text-light">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/Default.aspx">
+                        <a class="nav-link active" href="Default.aspx">
                             <i class="fas fa-tachometer-alt"></i>
                             <span runat="server" ID="HomeAnchor">Home</span>
                         </a>
                     </li>
                     <li id="UserMenu" runat="server" class="nav-item">
-                        <a class="nav-link active" href="/Users.aspx">
+                        <a class="nav-link active" href="Users.aspx">
                             <i class="fas fa-user"></i>
                             <span runat="server" ID="UsersAnchor">Users</span>
                         </a>
                     </li>
                       <li id="PermissionMenu" runat="server" class="nav-item">
-                        <a class="nav-link active" href="/Permissions.aspx">
+                        <a class="nav-link active" href="Permissions.aspx">
                             <i class="fa-solid fa-unlock"></i>
                             <span runat="server" ID="PermissionsAnchor">Permissions</span>
                         </a>
                     </li>
                     
                     <li id="LogMenu" runat="server" class="nav-item">
-                        <a class="nav-link active" href="/Logs.aspx">
+                        <a class="nav-link active" href="Logs.aspx">
                             <i class="fas fa-history"></i>
                             <span runat="server" ID="LogsAnchor">Logs</span>
                         </a>
@@ -60,38 +60,38 @@
                         </a>
                     </li>--%>
                     <li id="CustomerMenu" runat="server" class="nav-item">
-                        <a class="nav-link active" href="/Customers.aspx">
+                        <a class="nav-link active" href="Customers.aspx">
                             <i class="fas fa-id-card"></i>
                             <span runat="server" ID="CustomersAnchor">Contacts</span>
                         </a>
                     </li>
                     <li id="CampaignMenu" runat="server" class="nav-item">
-                        <a class="nav-link active" href="/Campaigns.aspx">
+                        <a class="nav-link active" href="Campaigns.aspx">
                             <i class="fas fa-paper-plane"></i>
                             <span runat="server" ID="CampaignsAnchor">Campaigns</span>
                         </a>
                     </li>
                     <li id="ChannelMenu" runat="server" class="nav-item">
-                        <a class="nav-link active" href="/Channels.aspx">
+                        <a class="nav-link active" href="Channels.aspx">
                             <i class="fas fa-rss"></i>
                             <span runat="server" ID="ChannelsAnchor">Channels</span>
                         </a>
                     </li>
                     <li id="InteractionMenu" runat="server"  class="nav-item">
-                        <a class="nav-link active" href="/Interactions.aspx">
+                        <a class="nav-link active" href="Interactions.aspx">
                            <i class="fas fa-mouse-pointer"></i>
                             <span runat="server" ID="InteractionsAnchor">Interactions</span>
                         </a>
                     </li>
                                         <li id="SegmentMenu" runat="server" class="nav-item">
-                        <a class="nav-link active" href="/Segments.aspx">
+                        <a class="nav-link active" href="Segments.aspx">
                            <i class="fas fa-braille"></i>
                             <span runat="server" ID="SegmentsAnchor">Segments</span>
                         </a>
                     </li>
                   
                     <li id="JourneyMenu" runat="server" class="nav-item">
-                        <a class="nav-link active" href="/Journeys.aspx">
+                        <a class="nav-link active" href="Journeys.aspx">
                            <i class="fa-solid fa-bezier-curve"></i>
                             <span runat="server" ID="JourneyAnchor">Journeys</span>
                         </a>

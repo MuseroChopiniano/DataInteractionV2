@@ -2,6 +2,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentPlaceholder" runat="server">
      <script src="Scripts/chart.min.js" type="text/javascript"></script>
     <script src="Charts/SegmentCharts.js" type="text/javascript"></script>
+   
     <div class="container-fluid">
          <div class="col-12 mb-4">
               <h1 class="page-header rgba-primary-0" runat="server" ID="SegmentTitle">Segment Generator</h1> 
@@ -35,7 +36,7 @@
        
     </div>
    
-                                          
+                    <input id="hiddenData" runat="server" hidden="hidden"/>                      
                             
                         
        

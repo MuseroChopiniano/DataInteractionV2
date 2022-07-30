@@ -67,7 +67,7 @@ namespace UI
         {
             this.InteractionTypeTxt.Text = interaction.Type;
             this.InteractionDateTxt.Text = interaction.Date.ToString("yyyy-MM-dd");
-            this.InteractionRevenueTxt.Text = interaction.Revenue.ToString();
+            this.InteractionRevenueTxt.Text = interaction.Revenue.ToString().Replace(",", ".");
             this.InteractionChannelDropdown.SelectedValue = interaction.Channel.Id.ToString();
             this.InteractionCustomerDropdown.SelectedValue = interaction.Customer.Id.ToString();
             this.InteractionCampaignDropdown.SelectedValue = interaction.Campaign.Id.ToString();

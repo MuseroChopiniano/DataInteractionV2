@@ -62,11 +62,11 @@ namespace UI
         {
             this.CampaignNameTxt.Text = camp.Name;
             this.CampaignstatusTxt.Text = camp.Status;
-            this.CampaignActualCostTxt.Text = camp.ActualCost.ToString();
-            this.CampaignBudgetedCostTxt.Text = camp.BudgetedCost.ToString();
+            this.CampaignActualCostTxt.Text = camp.ActualCost.ToString().Replace(",",".");
+            this.CampaignBudgetedCostTxt.Text = camp.BudgetedCost.ToString().Replace(",", ".");
             this.CampaignDescriptionTxt.Text = camp.Description;
             this.CampaignEndDateTxt.Text = camp.EndDate.Date.ToString("yyyy-MM-dd");
-            this.CampaignExpectedRevenueTxt.Text = camp.ExpectedRevenue.ToString();
+            this.CampaignExpectedRevenueTxt.Text = camp.ExpectedRevenue.ToString().Replace(",", ".");
             this.CampaignStartDateTxt.Text = camp.StartDate.Date.ToString("yyyy-MM-dd");
 
 

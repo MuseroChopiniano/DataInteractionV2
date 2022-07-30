@@ -31,7 +31,7 @@ namespace UI
                 }
             }
 
-            var result = interactions.OrderBy(x => x.Date).GroupBy(y => y.Customer.Id).ToList();
+            var result = interactions.OrderBy(x => x.Date).GroupBy(y => new { y.Customer.Id,y.Date.Date }).ToList();
 
             HashSet<string> labels = new HashSet<string>();
            

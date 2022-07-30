@@ -32,8 +32,8 @@ namespace BLL
             double[][] result = new double[data.Length][];
             for (int i = 0; i < data.Length; ++i)
             {
-                result[i] = new double[data[i].Length];
-                Array.Copy(data[i], result[i], data[i].Length);
+                result[i] = new double[data[i].Length-1];
+                Array.Copy(data[i], result[i], data[i].Length-1);
             }
 
             for (int j = 0; j < result[0].Length; ++j)

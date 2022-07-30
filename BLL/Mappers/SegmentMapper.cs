@@ -64,6 +64,7 @@ namespace BLL.Mappers
                 segment.Id = int.Parse(row["Id"].ToString());
                 segment.Name = row["Name"].ToString();
                 segment.Type = row["Type"].ToString();
+                segment.Description = row["Description"].ToString();
                 segment.CreatedDate = DateTime.Parse(row["CreatedDate"].ToString());
                 segment.CreatedById = int.Parse(row["CreatedById"].ToString());
                 segment.LastModifiedById = int.Parse(row["LastModifiedById"].ToString());

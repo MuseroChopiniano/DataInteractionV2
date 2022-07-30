@@ -9,9 +9,9 @@
         <div class="row">
             <div class="col-md-12 mb-4">
                   <div id="newBtnContainer" runat="server" class="card-header d-flex justify-content-end">
-                   <!-- <button id="HtmlNewBtn" type="button" Class="btn btn-primary di-button-primary m-1" onclick="window.location.href='/SegmentDetail.aspx?action=new'"><i class="fas fa-plus"> </i>&nbsp;<span runat="server" ID="NewBtn">New</span></button> -->
-                    <button type="button" class="btn btn-primary di-button-primary m-1" onclick="window.location.href='/SegmentGenerator.aspx?type=Engagement'"><i class="fas fa-plus"> </i>&nbsp;<span runat="server" ID="Span1">Generate Engagement Segments</span></button>
-                   <button type="button" class="btn btn-primary di-button-primary m-1" onclick="window.location.href='/SegmentGenerator.aspx?type=TotalSpend'"><i class="fas fa-plus"> </i>&nbsp;<span runat="server" ID="Span2">Generate Total Spend Segments</span></button>
+                   <!-- <button id="HtmlNewBtn" type="button" Class="btn btn-primary di-button-primary m-1" onclick="window.location.href='SegmentDetail.aspx?action=new'"><i class="fas fa-plus"> </i>&nbsp;<span runat="server" ID="NewBtn">New</span></button> -->
+                    <button type="button" class="btn btn-primary di-button-primary m-1" onclick="window.location.href='SegmentGenerator.aspx?type=Engagement'"><i class="fas fa-plus"> </i>&nbsp;<span runat="server" ID="Span1">Generate Engagement Segments</span></button>
+                   <button type="button" class="btn btn-primary di-button-primary m-1" onclick="window.location.href='SegmentGenerator.aspx?type=TotalSpend'"><i class="fas fa-plus"> </i>&nbsp;<span runat="server" ID="Span2">Generate Total Spend Segments</span></button>
                    
                 </div>
                 <div class="card shadow border-left-primary pb-2">

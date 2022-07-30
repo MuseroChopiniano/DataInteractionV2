@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12 mb-4">
                  <div id="newBtnContainer" runat="server" class="card-header d-flex justify-content-end">
-                    <button id="HtmlNewBtn" type="button" Class="btn btn-primary di-button-primary m-1" onclick="window.location.href='/CampaignDetail.aspx?action=new'"><i class="fas fa-plus"> </i>&nbsp;<span runat="server" ID="NewBtn">New</span></button>
+                    <button id="HtmlNewBtn" type="button" Class="btn btn-primary di-button-primary m-1" onclick="window.location.href='CampaignDetail.aspx?action=new'"><i class="fas fa-plus"> </i>&nbsp;<span runat="server" ID="NewBtn">New</span></button>
                 </div>
                 <div class="card shadow border-left-primary  pb-2">
                     <div class="card-body">

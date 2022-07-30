@@ -6,6 +6,16 @@
                 datasets: data
             },
             options: {
+                plugins: {
+                   
+                    tooltip: {
+                        callbacks: {
+                            label: (context) => {
+                                return `${xTitle}: ${context.raw.x}, ${yTitle}: ${context.raw.y}, CustomerId:${context.raw.id}`;
+                            }
+                        }
+                    }
+                },
                 scales: {
                     x: {
                         type: 'linear',

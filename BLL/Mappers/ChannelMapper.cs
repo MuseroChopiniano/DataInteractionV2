@@ -25,7 +25,11 @@ namespace BLL.Mappers
             try
             {
                 SqlParameter parameter = new SqlParameter("Id", entity.Id);
-                result = this.access.Save("dbo.DeleteChannel", new List<SqlParameter>() { parameter });
+                SqlParameter parameterLastModified = new SqlParameter("LastModifiedById", entity.LastModifiedById);
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                parameters.Add(parameter);
+                parameters.Add(parameterLastModified);
+                result = this.access.Save("dbo.DeleteChannel", parameters);
             }
             catch (Exception ex)
             {

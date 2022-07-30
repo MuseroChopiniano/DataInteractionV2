@@ -3,6 +3,7 @@ using BLL.Entities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -14,6 +15,7 @@ namespace UI
     public partial class SegmentGenerator : System.Web.UI.Page
     {
         InteractionManager interactionManager = new InteractionManager();
+        SegmentManager manager = new SegmentManager();
         UserManager userManager = new UserManager();
         User contextUser = new User();
         string type;
@@ -47,10 +49,14 @@ namespace UI
             var result = interactions.FindAll(x => x.Customer.Age != 0).GroupBy(x => x.Customer.Id).ToList();
 
             int numClusters = 3;
+            if(Request.Params.Get("clusters") != null)
+            {
+                int.TryParse(Request.Params.Get("clusters"), out numClusters);
+            }
             double[][] data = new double[result.Count()][];
             for (int i = 0; i < result.Count(); i++)
             {
-                data[i] = new double[] { result.ElementAt(i).Select(x => (double)x.Customer.Age).First(), result.ElementAt(i).Count() };
+                data[i] = new double[] { result.ElementAt(i).Select(x => (double)x.Customer.Age).First(), result.ElementAt(i).Count(),result.ElementAt(i).Key };
 
             }
             if (numClusters < data.Length)
@@ -78,7 +84,7 @@ namespace UI
             double[][] data = new double[result.Count()][];
             for (int i = 0; i < result.Count(); i++)
             {
-                data[i] = new double[] {decimal.ToDouble(result.ElementAt(i).Sum(x=> x.Revenue)), result.ElementAt(i).Count() };
+                data[i] = new double[] {decimal.ToDouble(result.ElementAt(i).Sum(x=> x.Revenue)), result.ElementAt(i).Count(),result.ElementAt(i).Key };
 
             }
             if (numClusters < data.Length)
@@ -99,9 +105,10 @@ namespace UI
 
         }
 
-        String[] colors = new string[] { "#fe6384", "#36a2eb", "rgb(255, 205, 86)" };
+        String[] colors = new string[] { "#fe6384", "#36a2eb", "rgb(255, 205, 86)"};
         private void ShowSegmentData(double[][] data, int[] clusters, int numClusters,string xTitle, string yTitle)
         {
+            Random rnd = new Random();
             List<SegmentChartData> datasets = new List<SegmentChartData>();
             for (int i = 0; i < numClusters; i++)
             {
@@ -115,24 +122,22 @@ namespace UI
                         SegmentPoint point = new SegmentPoint();
                         point.x = data[j][0];
                         point.y = data[j][1];
+                        point.id = Convert.ToInt32(data[j][2]);
                         points.Add(point);
                     }
                 }
                 chartData.data = points.ToArray();
-                chartData.backgroundColor = colors[i];
+               // chartData.backgroundColor = colors[i];
+               
                 datasets.Add(chartData);
             }
-
-
-
-           
 
             string initialTag = "<script type=\"text/javascript\">";
             string endTag = "</script>";
             string xTitleScript = "var xTitle = \"" + xTitle + "\";";
             string yTitleScript = "var yTitle =\"" + yTitle + "\";";
             string dataScript = "var data = " + JsonConvert.SerializeObject(datasets.ToArray()) + ";";
-
+            this.hiddenData.Value = JsonConvert.SerializeObject(datasets.ToArray());
             string script = initialTag + xTitleScript + yTitleScript + dataScript + endTag;
             ClientScript.RegisterStartupScript(this.GetType(), "SegmentScript", script);
         }
@@ -141,23 +146,28 @@ namespace UI
 
             FormsIdentity id = (FormsIdentity)User.Identity;
             FormsAuthenticationTicket ticket = id.Ticket;
-           /* Segment segmentToSave = new Segment();
-            if (action == "edit")
+            SegmentChartData[] data = JsonConvert.DeserializeObject<SegmentChartData[]>(this.hiddenData.Value);
+            List<Segment> segmentsToSave = new List<Segment>();
+            for (int i = 0; i < data.Length; i++)
             {
-                int segmentId = int.Parse(Request.Params.Get("id"));
-                segmentToSave.Id = segmentId;
+                Segment segment = new Segment();
+                segment.Name = "Auto generated segment " + i.ToString() + " " + DateTime.Now.ToString();
+                segment.Type = "Auto generated";
+                segment.Description = "Auto generated segment";
+                segment.CreatedById = this.contextUser.Id;
+                segment.LastModifiedById = this.contextUser.Id;
+                foreach (SegmentPoint item in data[i].data)
+                {
+                    segment.Customers.Add(new Customer() { Id = item.id });
+                }
+                segmentsToSave.Add(segment);
+            }
 
-            }
-            else
+            foreach (Segment item in segmentsToSave)
             {
-                segmentToSave.CreatedById = this.contextUser.Id;
+                this.manager.UpsertSegment(item);
             }
-            segmentToSave.Type = this.SegmentTypeTxt.Text;
-            segmentToSave.Name = this.SegmentNameTxt.Text;
-            segmentToSave.Description = this.SegmentDescriptionTxt.Text;
-            segmentToSave.LastModifiedById = int.Parse(ticket.UserData);
-            manager.UpsertSegment(segmentToSave);
-            */
+
             Response.Redirect("Segments.aspx");
         }
         public class SegmentChartData
@@ -170,6 +180,7 @@ namespace UI
         {
             public double x;
             public double y;
+            public int id;
         }
 
     }
