@@ -13,13 +13,13 @@
                 <div class="card shadow border-left-primary  pb-2">
                     <div class="card-body">
                         <div Id="tableDiv" runat="server" class="table table-bordered table-responsive">
-                           <asp:GridView OnDataBound="ChannelsGridView_DataBound" ID="ChannelsGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="ChannelsGridView_RowCommand" AllowPaging="True" OnPageIndexChanging="ChannelsGridView_PageIndexChanging">
+                           <asp:GridView OnDataBound="ChannelsGridView_DataBound" AllowSorting="true" OnSorting="ChannelsGridView_Sorting" ID="ChannelsGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="ChannelsGridView_RowCommand" AllowPaging="True" OnPageIndexChanging="ChannelsGridView_PageIndexChanging">
                                <Columns>
                                 
-                                <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="ChannelDetail.aspx?Id={0}&action=edit" DataTextField="Name" Text="Name" HeaderText="Name" />
-                                <asp:BoundField DataField="Type" HeaderText="Type"/>  
-                                   <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" />
-                                   <asp:BoundField DataField="LastModifiedDate" HeaderText="LastModifiedDate" />
+                                <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="ChannelDetail.aspx?Id={0}&action=edit" DataTextField="Name" Text="Name" HeaderText="Name" SortExpression="Name" />
+                                <asp:BoundField DataField="Type" HeaderText="Type" SortExpression="Type"/>  
+                                   <asp:BoundField DataField="CreatedDate" HeaderText="Created Date"  SortExpression="CreatedDate"/>
+                                   <asp:BoundField DataField="LastModifiedDate" HeaderText="Last Modified Date" SortExpression="LastModifiedDate" />
                                    <asp:ButtonField ButtonType="Button" CommandName="DeleteRow" ControlStyle-CssClass="btn btn-danger di-button-danger" Text="Delete"  >
 <ControlStyle CssClass="btn btn-danger di-button-danger"></ControlStyle>
                                    </asp:ButtonField>

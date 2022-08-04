@@ -34,7 +34,16 @@ namespace UI
         {
             if (userManager.HasPermission(this.contextUser, "Permission-Read"))
             {
-                PermissionsGridView.DataSource = manager.GetParentPermissions();
+                List<Permission> perms = manager.GetParentPermissions();
+                if (this.direction == SortDirection.Ascending)
+                {
+                    perms = perms.OrderBy(x => x.GetType().GetProperty(sortColumn).GetValue(x)).ToList();
+                }
+                else
+                {
+                    perms = perms.OrderByDescending(x => x.GetType().GetProperty(sortColumn).GetValue(x)).ToList();
+                }
+                PermissionsGridView.DataSource = perms;
                 PermissionsGridView.DataBind();
                 noRowsDiv.Visible = PermissionsGridView.Rows.Count == 0;
                 tableDiv.Visible = PermissionsGridView.Rows.Count > 0;
@@ -68,6 +77,37 @@ namespace UI
             if (!this.HasDeletePermission())
             {
                 PermissionsGridView.Columns[PermissionsGridView.Columns.Count - 1].Visible = false;
+            }
+        }
+
+        protected void PermissionsGridView_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            this.sortColumn = e.SortExpression;
+            if (direction == SortDirection.Ascending)
+            {
+                this.direction = SortDirection.Descending;
+            }
+            else
+            {
+                direction = SortDirection.Ascending;
+            }
+            this.LoadGridView();
+        }
+        public string sortColumn = "CreatedDate";
+       
+        public SortDirection direction
+        {
+            get
+            {
+                if (ViewState["directionState"] == null)
+                {
+                    ViewState["directionState"] = SortDirection.Ascending;
+                }
+                return (SortDirection)ViewState["directionState"];
+            }
+            set
+            {
+                ViewState["directionState"] = value;
             }
         }
     }

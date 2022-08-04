@@ -45,7 +45,16 @@ namespace UI
         {
             if (userManager.HasPermission(this.contextUser, "Interaction-Read"))
             {
-                InteractionsGridView.DataSource = manager.GetInteractions();
+                List<Interaction> interactions = manager.GetInteractions();
+                if (this.direction == SortDirection.Ascending)
+                {
+                    interactions= interactions.OrderBy(x => x.GetType().GetProperty(sortColumn).GetValue(x)).ToList();
+                }
+                else
+                {
+                    interactions = interactions.OrderByDescending(x => x.GetType().GetProperty(sortColumn).GetValue(x)).ToList();
+                }
+                InteractionsGridView.DataSource = interactions;
             InteractionsGridView.DataBind();
                 noRowsDiv.Visible = InteractionsGridView.Rows.Count == 0;
                 tableDiv.Visible = InteractionsGridView.Rows.Count > 0;
@@ -139,6 +148,40 @@ namespace UI
             if (!this.HasDeletePermission())
             {
                 InteractionsGridView.Columns[InteractionsGridView.Columns.Count - 1].Visible = false;
+            }
+        }
+
+        protected void InteractionsGridView_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            this.sortColumn = e.SortExpression;
+            if (direction == SortDirection.Ascending)
+            {
+                this.direction = SortDirection.Descending;
+            }
+            else
+            {
+                direction = SortDirection.Ascending;
+            }
+            this.LoadGridView();
+        }
+       
+
+
+        public string sortColumn = "CreatedDate";
+
+        public SortDirection direction
+        {
+            get
+            {
+                if (ViewState["directionState"] == null)
+                {
+                    ViewState["directionState"] = SortDirection.Ascending;
+                }
+                return (SortDirection)ViewState["directionState"];
+            }
+            set
+            {
+                ViewState["directionState"] = value;
             }
         }
     }

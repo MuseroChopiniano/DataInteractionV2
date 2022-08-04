@@ -38,8 +38,17 @@ namespace UI
         {
             if (userManager.HasPermission(this.contextUser, "Segment-Read"))
             {
-                SegmentsGridView.DataSource = manager.GetSegments();
-                   SegmentsGridView.DataBind();
+                List<Segment> segments = manager.GetSegments();
+                if (this.direction == SortDirection.Ascending)
+                {
+                    segments = segments.OrderBy(x => x.GetType().GetProperty(sortColumn).GetValue(x)).ToList();
+                }
+                else
+                {
+                    segments = segments.OrderByDescending(x => x.GetType().GetProperty(sortColumn).GetValue(x)).ToList();
+                }
+                SegmentsGridView.DataSource = segments;
+                SegmentsGridView.DataBind();
                 noRowsDiv.Visible = SegmentsGridView.Rows.Count == 0;
                 tableDiv.Visible = SegmentsGridView.Rows.Count > 0;
             }
@@ -148,6 +157,41 @@ namespace UI
         protected void SaveSegmentBtn_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void SegmentsGridView_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            this.sortColumn = e.SortExpression;
+            if (direction == SortDirection.Ascending)
+            {
+                this.direction = SortDirection.Descending;
+            }
+            else
+            {
+                direction = SortDirection.Ascending;
+            }
+            this.LoadGridView();
+        }
+      
+
+
+
+        public string sortColumn = "CreatedDate";
+
+        public SortDirection direction
+        {
+            get
+            {
+                if (ViewState["directionState"] == null)
+                {
+                    ViewState["directionState"] = SortDirection.Ascending;
+                }
+                return (SortDirection)ViewState["directionState"];
+            }
+            set
+            {
+                ViewState["directionState"] = value;
+            }
         }
     }
 }

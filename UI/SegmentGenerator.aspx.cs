@@ -127,7 +127,7 @@ namespace UI
                     }
                 }
                 chartData.data = points.ToArray();
-               // chartData.backgroundColor = colors[i];
+                chartData.backgroundColor = colors[i];
                
                 datasets.Add(chartData);
             }

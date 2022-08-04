@@ -50,7 +50,19 @@ namespace UI
 
         protected void CloseSessionBtn_Click(object sender, EventArgs e)
         {
+            FormsIdentity id = (FormsIdentity) Page.User.Identity;
+            FormsAuthenticationTicket ticket = id.Ticket;
+            int contextUserId = int.Parse(ticket.UserData);
             FormsAuthentication.SignOut();
+            LogManager logManager = new LogManager();
+            logManager.SaveLog(new LogEntity()
+            {
+                EventType = EventType.Logout,
+                Entity = "User",
+                Message = "The User with Id " + contextUserId  + " has logged out",
+                LastModifiedById = contextUserId,
+                CreatedById = contextUserId
+            });
             Response.Redirect("Login.aspx", true);
         }
 
@@ -64,5 +76,9 @@ namespace UI
            
         }
 
+        protected void ChangePwdBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ChangePassword.aspx");
+        }
     }
 }

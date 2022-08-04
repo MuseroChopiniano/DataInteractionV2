@@ -14,18 +14,18 @@
                 <div class="card shadow border-left-primary  pb-2">
                     <div class="card-body">
                        <div Id="tableDiv" runat="server" class="table table-bordered table-responsive">
-                           <asp:GridView OnDataBound="InteractionsGridView_DataBound" ID="InteractionsGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="InteractionsGridView_RowCommand" AllowPaging="True" OnPageIndexChanging="InteractionsGridView_PageIndexChanging">
+                           <asp:GridView OnDataBound="InteractionsGridView_DataBound" AllowSorting="true" OnSorting="InteractionsGridView_Sorting" ID="InteractionsGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="InteractionsGridView_RowCommand" AllowPaging="True" OnPageIndexChanging="InteractionsGridView_PageIndexChanging">
                                <Columns>
                                 
-                                <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="InteractionDetail.aspx?Id={0}&action=edit" DataTextField="Id" Text="Id" HeaderText="Id" />
-                                <asp:BoundField DataField="Type" HeaderText="Type"/>
+                                <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="InteractionDetail.aspx?Id={0}&action=edit" DataTextField="Id" Text="Id" HeaderText="Id" SortExpression="Id" />
+                                <asp:BoundField DataField="Type" HeaderText="Type" SortExpression="Type"/>
                                <%-- 
                                 <asp:BoundField DataField="Channel.Name" HeaderText="Channel" />
                                 <asp:BoundField DataField="Customer.Name" HeaderText="Customer" /> 
                                 <asp:BoundField DataField="Campaign.Name" HeaderText="Campaign" /> --%>
-                                    <asp:BoundField DataField="Date" HeaderText="Date" />
-                                    <asp:BoundField DataField="Revenue" HeaderText="Revenue" />
-                                    <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" />
+                                    <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" />
+                                    <asp:BoundField DataField="Revenue" HeaderText="Revenue" SortExpression="Revenue" />
+                                    <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" SortExpression="CreatedDate" />
 
                                    <asp:ButtonField ButtonType="Button" CommandName="DeleteRow" ControlStyle-CssClass="btn btn-danger di-button-danger" Text="Delete" >
 <ControlStyle CssClass="btn btn-danger di-button-danger"></ControlStyle>

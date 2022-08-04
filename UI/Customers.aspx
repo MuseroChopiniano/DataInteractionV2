@@ -12,13 +12,13 @@
                 <div class="card shadow border-left-primary  pb-2">
                     <div class="card-body">
                         <div Id="tableDiv" runat="server" class="table table-bordered table-responsive">
-                           <asp:GridView OnDataBound="CustomersGridView_DataBound" AllowPaging="true" OnPageIndexChanging="CustomersGridView_PageIndexChanging" ID="CustomersGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="CustomersGridView_RowCommand">
+                           <asp:GridView OnDataBound="CustomersGridView_DataBound" AllowSorting="true" OnSorting="CustomersGridView_Sorting" AllowPaging="true" OnPageIndexChanging="CustomersGridView_PageIndexChanging" ID="CustomersGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="CustomersGridView_RowCommand">
                                <Columns>
                                 <asp:BoundField DataField="Id" Visible="False" />
-                                <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="CustomerDetail.aspx?Id={0}&action=edit" DataTextField="Name" Text="Name" HeaderText="Name" />
-                                <asp:BoundField DataField="Email" HeaderText="Email"/>
-                                <asp:BoundField DataField="Age" HeaderText="Age" />
-                                <asp:BoundField DataField="DateOfBirth" HeaderText="Birthdate" />
+                                <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="CustomerDetail.aspx?Id={0}&action=edit" DataTextField="Name" Text="Name" HeaderText="Name" SortExpression="Name" />
+                                <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email"/>
+                                <asp:BoundField DataField="Age" HeaderText="Age" SortExpression="Age"/>
+                                <asp:BoundField DataField="DateOfBirth" HeaderText="Birthdate" SortExpression="DateOfBirth" />
                                    <asp:ButtonField ButtonType="Button" CommandName="DeleteRow" ControlStyle-CssClass="btn btn-danger di-button-danger" Text="Delete" />
                             </Columns>
                                 <PagerSettings PageButtonCount="5" />

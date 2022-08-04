@@ -13,13 +13,13 @@
                 <div class="card shadow border-left-primary  pb-2">
                     <div class="card-body">
                         <div Id="tableDiv" runat="server" class="table table-bordered table-responsive">
-                           <asp:GridView OnDataBound="UsersGridView_DataBound" ID="UsersGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="UsersGridView_RowCommand" AllowPaging="True" OnPageIndexChanging="UsersGridView_PageIndexChanging">
+                           <asp:GridView AllowSorting="true" OnSorting="UsersGridView_Sorting" OnDataBound="UsersGridView_DataBound" ID="UsersGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="UsersGridView_RowCommand" AllowPaging="True" OnPageIndexChanging="UsersGridView_PageIndexChanging">
                                <Columns>
                                 
-                                <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="UserDetail.aspx?Id={0}&action=edit" DataTextField="Username" Text="Username" HeaderText="Username" />
-                                <asp:BoundField DataField="FirstName" HeaderText="FirstName"/>  
-                                    <asp:BoundField DataField="LastName" HeaderText="LastName"/>
-                                    <asp:BoundField DataField="Email" HeaderText="Email" />
+                                <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="UserDetail.aspx?Id={0}&action=edit" DataTextField="Username" Text="Username" HeaderText="Username" SortExpression="Username"/>
+                                <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName"/>  
+                                    <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName"/>
+                                    <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
 
                                    <asp:ButtonField ButtonType="Button" CommandName="DeleteRow" ControlStyle-CssClass="btn btn-danger di-button-danger" Text="Delete"  >
 <ControlStyle CssClass="btn btn-danger di-button-danger"></ControlStyle>

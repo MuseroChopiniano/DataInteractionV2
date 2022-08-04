@@ -55,6 +55,10 @@ namespace BLL
                 if(perm.Type == PermissionType.Group)
                 {
                     result = this.HasPermission(perm.ChildPermissions, permission);
+                    if (result)
+                    {
+                        return result;
+                    }
                 }
             }
             return result;

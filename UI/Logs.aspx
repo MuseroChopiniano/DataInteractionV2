@@ -11,14 +11,15 @@
                 <div class="card shadow border-left-primary  pb-2">
                     <div class="card-body">
                          <div Id="tableDiv" runat="server" class="table table-bordered table-responsive">
-                           <asp:GridView AllowPaging="true" OnPageIndexChanging="LogsGridView_PageIndexChanging" ID="LogsGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" >
+                           <asp:GridView AllowSorting="true" AllowPaging="true" OnSorting="LogsGridView_Sorting" OnPageIndexChanging="LogsGridView_PageIndexChanging" ID="LogsGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" >
                                <Columns>
-                                <asp:BoundField DataField="Id" Visible="true" HeaderText="Id"/>
-                                 <asp:BoundField DataField="EventType" HeaderText="Event Type"/>
-                                 <asp:BoundField DataField="Entity" HeaderText="Entity"/>
+                                <asp:BoundField DataField="Id" Visible="true" HeaderText="Id" SortExpression="Id"/>
+                                
+                                     <asp:BoundField DataField="EventType" HeaderText="Event Type" SortExpression="EventType"/>
+                                <asp:BoundField DataField="Entity" HeaderText="Entity" SortExpression="Entity"/>
                                    <asp:BoundField DataField="Message" HeaderText="Message" />
-                                <asp:BoundField DataField="CreatedById" HeaderText="Created By Id" />
-                                   <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" />
+                                <asp:BoundField DataField="CreatedById" HeaderText="Created By Id" SortExpression="CreatedById" />
+                                   <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" SortExpression="CreatedDate"/>
 
                                     </Columns>
                                 <PagerSettings PageButtonCount="5" />

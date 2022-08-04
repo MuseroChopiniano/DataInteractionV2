@@ -24,7 +24,7 @@ namespace UI
             String username = UsernameTxt.Text;
             String password = PasswordTxt.Text;
             User currentUser = new User() { Username = username, Password = password };
-            //TODO: Validate Properly 
+           
             if (this.ValidateExistence(ref currentUser))
             {
                 if (manager.ValidatePassword(password, currentUser)) {
@@ -46,13 +46,22 @@ namespace UI
                         strRedirect = Request["ReturnUrl"];
                         if (strRedirect == null)
                             strRedirect = "Default.aspx";
+                        LogManager logManager = new LogManager();
+                        logManager.SaveLog(new LogEntity()
+                        {
+                            EventType = EventType.Login,
+                            Entity = "User",
+                            Message = "The User with Id " + currentUser.Id + " has logged in",
+                            LastModifiedById = currentUser.Id,
+                            CreatedById = currentUser.Id
+                        });
                         Response.Redirect(strRedirect, true);
                     }
                     else
                     {
                         this.errorMessage.InnerText = "The user is blocked";
                         this.errorMessage.Visible = true;
-                       //TODO: show Blocked Message
+                       
                     }
                 }
                 else

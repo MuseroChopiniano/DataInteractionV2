@@ -12,15 +12,15 @@
                 <div class="card shadow border-left-primary  pb-2">
                     <div class="card-body">
                         <div Id="tableDiv" runat="server" class="table table-bordered table-responsive">
-                           <asp:GridView OnDataBound="CampaignsGridView_DataBound" AllowPaging="true" OnPageIndexChanging="CampaignsGridView_PageIndexChanging" ID="CampaignsGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="CampaignsGridView_RowCommand">
+                           <asp:GridView OnDataBound="CampaignsGridView_DataBound" AllowSorting="true" OnSorting="CampaignsGridView_Sorting" AllowPaging="true" OnPageIndexChanging="CampaignsGridView_PageIndexChanging" ID="CampaignsGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="CampaignsGridView_RowCommand">
                                <Columns>
                                 <asp:BoundField DataField="Id" Visible="False" />
-                                <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="CampaignDetail.aspx?Id={0}&action=edit" DataTextField="Name" Text="Name" HeaderText="Name" />
-                                <asp:BoundField DataField="Status" HeaderText="Status"/>
-                                    <asp:BoundField DataField="ActualCost" HeaderText="Actual Cost" />
-                                <asp:BoundField DataField="StartDate" HeaderText="Start Date" />
-                                <asp:BoundField DataField="EndDate" HeaderText="End Date" />
-                                    <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" />
+                                <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="CampaignDetail.aspx?Id={0}&action=edit" DataTextField="Name" Text="Name" HeaderText="Name" SortExpression="Name" />
+                                <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status"/>
+                                    <asp:BoundField DataField="ActualCost" HeaderText="Actual Cost"  SortExpression="ActualCost"/>
+                                <asp:BoundField DataField="StartDate" HeaderText="Start Date" SortExpression="StartDate"/>
+                                <asp:BoundField DataField="EndDate" HeaderText="End Date" SortExpression="EndDate" />
+                                    <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" SortExpression="CreatedDate" />
 
                                    <asp:ButtonField ButtonType="Button" CommandName="DeleteRow" ControlStyle-CssClass="btn btn-danger di-button-danger" Text="Delete" />
                             </Columns>

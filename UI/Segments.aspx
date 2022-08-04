@@ -17,13 +17,13 @@
                 <div class="card shadow border-left-primary pb-2">
                     <div class="card-body">
                       <div visible="false" Id="tableDiv" runat="server" class="table table-bordered table-responsive">
-                           <asp:GridView OnDataBound="SegmentsGridView_DataBound" AllowPaging="true" OnPageIndexChanging="SegmentsGridView_PageIndexChanging" ID="SegmentsGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="SegmentsGridView_RowCommand">
+                           <asp:GridView OnDataBound="SegmentsGridView_DataBound" AllowSorting="true" OnSorting="SegmentsGridView_Sorting"  AllowPaging="true" OnPageIndexChanging="SegmentsGridView_PageIndexChanging" ID="SegmentsGridView" runat="server" CssClass="table table-hover table-striped" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="SegmentsGridView_RowCommand">
                                <Columns>
                                 <asp:BoundField DataField="Id" Visible="False" />
-                                <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="SegmentDetail.aspx?Id={0}&action=edit" DataTextField="Name" Text="Name" HeaderText="Name" />
-                                <asp:BoundField DataField="Type" HeaderText="Type"/>                               
+                                <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="SegmentDetail.aspx?Id={0}&action=edit" DataTextField="Name" Text="Name" HeaderText="Name" SortExpression="Name"/>
+                                <asp:BoundField DataField="Type" HeaderText="Type" SortExpression="Type"/>                               
                               
-                                    <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" />
+                                    <asp:BoundField DataField="CreatedDate" HeaderText="Created Date"  SortExpression="CreatedDate"/>
 
                                    <asp:ButtonField ButtonType="Button" CommandName="DeleteRow" ControlStyle-CssClass="btn btn-danger di-button-danger" Text="Delete" />
                             </Columns>

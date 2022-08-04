@@ -33,9 +33,17 @@ namespace UI
         {
             if (userManager.HasPermission(this.contextUser, "Campaign-Read"))
             {
-
-                CampaignsGridView.DataSource = manager.GetCampaigns();
-            CampaignsGridView.DataBind();
+                List<Campaign> campaigns = manager.GetCampaigns();
+                if (this.direction == SortDirection.Ascending)
+                {
+                    campaigns = campaigns.OrderBy(x => x.GetType().GetProperty(sortColumn).GetValue(x)).ToList();
+                }
+                else
+                {
+                    campaigns = campaigns.OrderByDescending(x => x.GetType().GetProperty(sortColumn).GetValue(x)).ToList();
+                }
+                CampaignsGridView.DataSource = campaigns;
+                CampaignsGridView.DataBind();
                 noRowsDiv.Visible = CampaignsGridView.Rows.Count == 0;
                 tableDiv.Visible = CampaignsGridView.Rows.Count > 0;
             }
@@ -69,6 +77,38 @@ namespace UI
                 CampaignsGridView.Columns[CampaignsGridView.Columns.Count - 1].Visible = false;
             }
 
+        }
+
+        protected void CampaignsGridView_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            this.sortColumn = e.SortExpression;
+            if (direction == SortDirection.Ascending)
+            {
+                this.direction = SortDirection.Descending;
+            }
+            else
+            {
+                direction = SortDirection.Ascending;
+            }
+            this.LoadGridView();
+        }
+     
+        public string sortColumn = "CreatedDate";
+
+        public SortDirection direction
+        {
+            get
+            {
+                if (ViewState["directionState"] == null)
+                {
+                    ViewState["directionState"] = SortDirection.Ascending;
+                }
+                return (SortDirection)ViewState["directionState"];
+            }
+            set
+            {
+                ViewState["directionState"] = value;
+            }
         }
     }
 }

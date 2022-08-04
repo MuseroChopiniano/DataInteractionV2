@@ -35,7 +35,16 @@ namespace UI
         {
             if(manager.HasPermission(this.contextUser, "User-Read"))
             {
-                UsersGridView.DataSource = manager.GetAll();
+                List<User> users = manager.GetAll();
+                if(this.direction == SortDirection.Ascending)
+                {
+                    users = users.OrderBy(x => x.GetType().GetProperty(sortColumn).GetValue(x)).ToList();
+                }
+                else
+                {
+                    users = users.OrderByDescending(x => x.GetType().GetProperty(sortColumn).GetValue(x)).ToList();
+                }
+                UsersGridView.DataSource = users ;
                 UsersGridView.DataBind();
                 noRowsDiv.Visible = UsersGridView.Rows.Count == 0;
                 tableDiv.Visible = UsersGridView.Rows.Count > 0;
@@ -74,5 +83,36 @@ namespace UI
                 UsersGridView.Columns[UsersGridView.Columns.Count - 1].Visible=false;
             }
         }
+
+        public string sortColumn = "CreatedDate";
+        protected void UsersGridView_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            this.sortColumn = e.SortExpression;
+            if (direction == SortDirection.Ascending)
+            {
+                this.direction = SortDirection.Descending;
+            }
+            else
+            {
+                direction = SortDirection.Ascending;
+            }
+            this.LoadData();
+        }
+        public SortDirection direction
+        {
+            get
+            {
+                if (ViewState["directionState"] == null)
+                {
+                    ViewState["directionState"] = SortDirection.Ascending;
+                }
+                return (SortDirection)ViewState["directionState"];
+            }
+            set
+            {
+                ViewState["directionState"] = value;
+            }
+        }
+     
     }
 }

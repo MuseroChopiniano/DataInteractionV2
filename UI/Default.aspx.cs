@@ -26,6 +26,7 @@ namespace UI
         decimal ROI = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             this.LoadInteractionsByChannel();
             this.LoadRevenueByChannel();
             this.LoadCampaignData();
@@ -186,7 +187,7 @@ namespace UI
             {
                 this.ROI = (this.TotalRevenue - this.TotalSpending) / this.TotalSpending;
             }
-            this.ROISpan.InnerText = ROI.ToString("c", CultureInfo.CurrentCulture);
+            this.ROISpan.InnerText = ROI.ToString("P2", CultureInfo.CurrentCulture);
         }
 
 

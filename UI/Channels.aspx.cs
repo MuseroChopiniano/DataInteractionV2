@@ -37,7 +37,16 @@ namespace UI
         {
             if (userManager.HasPermission(this.contextUser, "Channel-Read"))
             {
-                ChannelsGridView.DataSource = manager.GetChannels();
+                List<Channel> channels = manager.GetChannels();
+                if (this.direction == SortDirection.Ascending)
+                {
+                    channels= channels.OrderBy(x => x.GetType().GetProperty(sortColumn).GetValue(x)).ToList();
+                }
+                else
+                {
+                    channels = channels.OrderByDescending(x => x.GetType().GetProperty(sortColumn).GetValue(x)).ToList();
+                }
+                ChannelsGridView.DataSource = channels;
                 ChannelsGridView.DataBind();
                 noRowsDiv.Visible = ChannelsGridView.Rows.Count == 0;
                 tableDiv.Visible = ChannelsGridView.Rows.Count > 0;
@@ -75,6 +84,39 @@ namespace UI
             if (!this.HasDeletePermission())
             {
                 ChannelsGridView.Columns[ChannelsGridView.Columns.Count - 1].Visible = false;
+            }
+        }
+
+        protected void ChannelsGridView_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            this.sortColumn = e.SortExpression;
+            if (direction == SortDirection.Ascending)
+            {
+                this.direction = SortDirection.Descending;
+            }
+            else
+            {
+                direction = SortDirection.Ascending;
+            }
+            this.LoadGridView();
+        }
+        
+
+        public string sortColumn = "CreatedDate";
+
+        public SortDirection direction
+        {
+            get
+            {
+                if (ViewState["directionState"] == null)
+                {
+                    ViewState["directionState"] = SortDirection.Ascending;
+                }
+                return (SortDirection)ViewState["directionState"];
+            }
+            set
+            {
+                ViewState["directionState"] = value;
             }
         }
     }

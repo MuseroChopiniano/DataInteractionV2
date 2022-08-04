@@ -142,7 +142,8 @@
                                         <!--<img src="Images/ProfilePic.png" class="border rounded-circle img-profile" style="width:35px"/>-->
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="drodpdownMenu">
-                                        <asp:LinkButton Id="CloseSessionBtn" Text="Cerrar Sesión" runat="server" onclick="CloseSessionBtn_Click" CssClass="dropdown-item"/>
+                                         <asp:LinkButton Id="ChangePwdBtn" Text="Change Password" runat="server" onclick="ChangePwdBtn_Click" CssClass="dropdown-item"/>
+                                        <asp:LinkButton Id="CloseSessionBtn" Text="Logout" runat="server" onclick="CloseSessionBtn_Click" CssClass="dropdown-item"/>
                                     </div>
                                 </div>
                             </li>
