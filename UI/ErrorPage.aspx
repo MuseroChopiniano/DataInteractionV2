@@ -15,7 +15,7 @@
         
             <h1>OOOPS...</h1>
  <p>Something went wrong. Contact your Admin for support or try again later.</p>
-        <asp:Button CssClass="btn btn-primary di-button-primary" Text="Go Back Home" runat="server" OnClick="Unnamed_Click" />
+        <asp:Button CssClass="btn btn-primary di-button-primary" Text="Go Back Home" runat="server" OnClientClick="window.location.href='Default.aspx'; return false;" />
                </form>
          
          </div>
