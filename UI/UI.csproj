@@ -126,7 +126,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\FinalDB.txt" />
+    <Content Include="App_Data\DataInteraction.sql" />
     <Content Include="CampaignDetail.aspx" />
     <Content Include="Campaigns.aspx" />
     <Content Include="ChangePassword.aspx" />

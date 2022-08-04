@@ -19,10 +19,10 @@
                                 
                                 <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="InteractionDetail.aspx?Id={0}&action=edit" DataTextField="Id" Text="Id" HeaderText="Id" SortExpression="Id" />
                                 <asp:BoundField DataField="Type" HeaderText="Type" SortExpression="Type"/>
-                               <%-- 
-                                <asp:BoundField DataField="Channel.Name" HeaderText="Channel" />
+                             
+                                <asp:BoundField DataField="Channel.Name" HeaderText="Channel"/>
                                 <asp:BoundField DataField="Customer.Name" HeaderText="Customer" /> 
-                                <asp:BoundField DataField="Campaign.Name" HeaderText="Campaign" /> --%>
+                                <asp:BoundField DataField="Campaign.Name" HeaderText="Campaign" /> 
                                     <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" />
                                     <asp:BoundField DataField="Revenue" HeaderText="Revenue" SortExpression="Revenue" />
                                     <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" SortExpression="CreatedDate" />

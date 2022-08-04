@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Entities
 {
-    public class Channel : SystemEntity
+    public class Channel : SystemEntity, IComparable<Channel>
     {
         public Channel() { }
         public Channel(int Id)
@@ -15,5 +15,11 @@ namespace BLL.Entities
         }
         public string Name { get; set; } = "";
         public string Type { get; set; }
+
+        public int CompareTo(Channel obj)
+        {
+            return this.Name.CompareTo(obj.Name);
+
+        }
     }
 }

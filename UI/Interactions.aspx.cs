@@ -74,15 +74,18 @@ namespace UI
 
         protected void UploadBtn_Click(object sender, EventArgs e)
         {
+
            
 
-            String tempPathForFile = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
+          //  String tempPathForFile = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
             if (UploadControl.HasFile)
             {
                 String fileName = UploadControl.FileName;
-                tempPathForFile += fileName;
-                UploadControl.SaveAs(tempPathForFile);
-                ReadCsv(tempPathForFile);
+                FileInfo MyFile = new FileInfo(Server.MapPath("~\\App_Data\\"+fileName));
+               // tempPathForFile += fileName;
+                UploadControl.SaveAs(MyFile.ToString());
+                ReadCsv(MyFile.ToString());
+                MyFile.Delete();
             }
             
         }

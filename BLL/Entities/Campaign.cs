@@ -10,7 +10,7 @@ namespace BLL.Entities
     {
 
         public string Status { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
         public decimal ActualCost { get; set; }
 
         public decimal BudgetedCost { get; set; }

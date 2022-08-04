@@ -32,7 +32,7 @@ namespace UI
                 contextUser.Password = newPass;
                 contextUser.LastModifiedById = contextUser.Id;
                 manager.UpsertUser(contextUser);
-                Response.Redirect("Default.aspx");
+                Response.Redirect("/Default.aspx");
             }
             else
             {

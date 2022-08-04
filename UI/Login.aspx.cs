@@ -44,7 +44,7 @@ namespace UI
                         Response.Cookies.Add(cookie);
                         string strRedirect;
                         strRedirect = Request["ReturnUrl"];
-                        if (strRedirect == null)
+                        if (strRedirect == null || strRedirect.Contains("DataInteraction"))
                             strRedirect = "Default.aspx";
                         LogManager logManager = new LogManager();
                         logManager.SaveLog(new LogEntity()
